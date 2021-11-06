@@ -1,0 +1,35 @@
+<h1 class="text-center mb-5">Danh sách tác giả</h1>
+<form #form="ngForm" (ngSubmit)="updateUserList()">
+  <div class="action d-flex">
+    <div class="col-5">
+        <input type="checkbox" class="mx-2" name="checkbox_all" [(ngModel)]="isSelected" (change)="checkUncheckAll()">
+        <label for="checkbox_all">Chọn tất cả:</label>
+        
+        <button type="submit" class="btn btn-primary btn-sm mx-2" [disabled]="isDisableBtn">Báo cáo</button>
+    </div>
+    <input class="form-control mr-sm-2 col-3" type="search" placeholder="Search user name" aria-label="Search" (keyup)="onKey($event)">
+  </div>
+  <table class="table text-center">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">STT</th>
+        <th scope="col">Tên đăng nhập</th>
+        <th scope="col">Phân quyền</th>
+        <th scope="col">Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userListFilter| paginate: { itemsPerPage: 5, currentPage: p }; index as i">
+        <td><input type="checkbox" name="itemCheckbox" (change)="isAllSelected()" [(ngModel)]="user.isChecked"></td>
+        <th scope="row">{{i+1}}</th>
+        <td>{{user.user_name}}</td>
+        <td>{{user.permission}}</td>
+        <td><button type="button" class="btn btn-danger btn-sm" (click)="updateUser(user._id,'2')">Báo cáo</button></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+
+    

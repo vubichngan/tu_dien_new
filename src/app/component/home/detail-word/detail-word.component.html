@@ -1,0 +1,37 @@
+<div class="nav justify-content-center mt-2">
+    <form #formSearch="ngForm"class="form-inline my-2 my-lg-0 nav justify-content-center col-6" >
+        <input class="form-control mr-sm-2 col-7" type="search" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="wordSearch">
+        <a class="btn btn-primary my-2 my-sm-0" routerLink='/home/search' (click)="searchWord(wordSearch)">Search</a>
+    </form>
+</div>
+<div class="nav ml-5 pl-5 mt-5" *ngFor="let word of wordListFilter">
+    <ul class="list-group list-group-flush ml-5 pl-5 col-6">
+        <li class="list-group-item" >
+            <h4 class="text-primary">{{word.tu_en}} </h4> 
+            <p class="mb-2 ml-3"><strong>- Từ loại:</strong> {{word.tu_loai}}</p>
+            <p class="mb-1 ml-3"><strong>- Phiên âm:</strong> {{word.phien_am}}</p>
+        </li>
+        <li class="list-group-item">
+            <h5><strong>Dịch nghĩa</strong></h5>
+            <h6 class="mt-4 ml-3"><strong>- Nghĩa tiếng Việt</strong> </h6>
+            <p class="ml-5">{{word.nghia_vi}}</p>
+            <h6 class="ml-3"><strong>- Nghĩa tiếng Anh</strong></h6>
+            <p class="ml-5">{{word.nghia_en}}</p>
+        </li>
+        
+        <li class="list-group-item">
+            <h5 class="mb-3"><strong>Các từ liên quan</strong></h5>
+            <div>
+                <a class="text-info ml-3 d-block" *ngFor="let tu_lq of word.ds_tlq" routerLink='/home/detail' (click)="getWordId(tu_lq._id)">
+                    - {{tu_lq.tu_en}}
+                 </a>
+            </div>
+        </li>
+    </ul>
+    <div class="col-4">
+            <h5>Ảnh minh họa</h5>
+            <div *ngIf="word.anh">
+                <img src="{{word.anh}}" class="mx-3 ml-3">
+            </div>
+    </div>
+</div> 

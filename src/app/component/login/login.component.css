@@ -1,0 +1,19 @@
+form{
+    padding: 8px;
+    margin: 5% 40%;
+    background: paleturquoise;
+} 
+button{
+    width: 88%;
+    margin-bottom: 24px;
+}
+label{
+    color: red;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+}
+
+h1{
+    margin-bottom: 30px;
+}

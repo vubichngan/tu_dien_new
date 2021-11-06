@@ -1,0 +1,15 @@
+table{
+    width: 90%;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 5%;
+}
+
+
+#menu{
+    position: sticky;
+    top:0;
+}
+.modal-header{
+    border-bottom: none;
+}

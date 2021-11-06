@@ -1,0 +1,44 @@
+form{
+    width: 50%;
+    height: auto;
+    margin-top: 0px;
+    margin-left: 25%;
+    padding-top: 10px;
+    border: 1px solid rgb(197, 193, 193);
+}
+
+
+img{
+    width: 250px;
+    height: 150px;
+    border: 1px solid rgb(197, 193, 193);
+    margin-left: 5%;
+}
+
+.text-center button{
+    width: 25%;
+}
+
+.validation-message{
+    color: red;
+    text-align: center;
+    width: 100%;
+    margin: 5px;
+}
+
+input,select{
+    border: 1px solid gainsboro;
+    padding: 0;
+}
+
+.card{
+    position: fixed;
+    right: 5px;
+    bottom: 50%;
+    z-index: 1;
+    border: 1px solid red;
+}
+
+.form-control {
+    height:auto;
+}

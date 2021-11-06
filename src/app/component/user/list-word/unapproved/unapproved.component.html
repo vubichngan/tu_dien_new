@@ -1,0 +1,39 @@
+<h1 class="text-center mb-5">Danh sách từ bị từ chối</h1>
+<form (ngSubmit)="deleteWordList()">
+    <div class="d-flex">
+      <div class="col-7 ml-5">
+        <input type="checkbox" class="mx-2" name="checkbox_all" [(ngModel)]="isSelected" (change)="checkUncheckAll()">
+        <label for="checkbox_all"> Chọn tất cả</label>
+        <button type="submit" class="btn btn-primary mx-2" [disabled]="isDisableBtn">Xóa</button> 
+      </div>
+      <input class="form-control col-3 ml-5" type="search" placeholder="Search từ tiếng Anh" aria-label="Search" (keyup)="onKey($event)">
+    </div>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">STT</th>
+          <th scope="col">Từ tiếng Anh</th>
+          <th scope="col">Nghĩa tiếng Anh</th>
+          <th scope="col">Nghĩa tiếng Việt</th>
+          <th scope="col">Ảnh minh họa</th>
+          <th scope="col">Các từ liên quan</th>
+          <th scope="col" colspan="2" class="text-center">Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let word of wordListFilter | paginate: { itemsPerPage: 5, currentPage: p }; index as i">
+          <td><input type="checkbox" name="itemCheckbox" [(ngModel)]="word.isChecked" (change)="isAllSelected()"></td>
+          <th scope="row">{{i+1}}</th> 
+          <td>{{word.tu_en}} ({{word.tu_loai}}) {{word.phien_am}}</td>
+          <td>{{word.nghia_en}}</td>
+          <td>{{word.nghia_vi}}</td> 
+          <td ><div *ngIf="word.anh"><img src="{{word.anh}}"></div></td>
+          <td><p *ngFor="let tu_lq of word.ds_tlq">{{tu_lq.tu_en}} ({{tu_lq.tu_loai}}) {{tu_lq.phien_am}} {{tu_lq.nghia_vi}}</p></td>
+          <td><a routerLink='/user/edit-word' type="button" class="btn btn-primary" (click)="getWordId(word._id)">Edit</a></td>
+          <td><button type="button" class="btn btn-danger" (click)="deleteWord(word._id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+</form>
+<pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>

@@ -1,0 +1,81 @@
+<h1 class="mb-3 text-center">Sửa từ</h1>
+  <form [formGroup]="form" #addForm="ngForm" (submit)="form.valid && updateWord()">
+    <!-- <div formGroupName="tu"> -->
+      <div class="mx-3 my-3 w-75">
+        <h6>Từ tiếng Anh: </h6>
+        <input class="form-control pl-2" type="text" name="tu_en" formControlName="tu_en" required >
+        <div *ngIf="addForm.submitted && form.controls.tu_en?.errors?.required">
+          <label class="validation-message"> This field is required.</label>
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="col-3 mx-2">
+          <h6 for="tu_loai">Từ loại: </h6>
+          <select name="tu_loai" class="form-control" formControlName="tu_loai" required>
+            <option value="Verb">Verb</option>
+            <option value="Noun">Noun</option>
+            <option value="Adjective">Adjective</option>
+            <option value="Adverb">Adverb</option>
+            <option value="prefix">prefix</option>
+            <option value="Pronoun">Pronoun</option>
+            <option value="Preposition">Preposition</option>
+          </select>
+        </div>
+        <div class="col-4 mx-3">
+          <h6 for="phien_am">Phiên âm:</h6>
+          <input type="text" class="form-control" name="phien_am" formControlName="phien_am">
+        </div>
+      </div>
+    <!-- </div> -->
+      
+      <div class="mx-3 my-3">
+        <h6 >Nghĩa tiếng Anh:</h6>
+        <textarea class="form-control" rows="4" name="nghia_en" formControlName="nghia_en" ></textarea>
+      </div>
+      <div class="mx-3 my-3">
+          <h6 >Nghĩa tiếng Việt:</h6>
+          <textarea class="form-control" rows="4" name="nghia_vi" formControlName="nghia_vi" required></textarea>
+          <div *ngIf="addForm.submitted && form.controls.nghia_vi?.errors?.required">
+            <label class="validation-message"> This field is required.</label>
+          </div>
+      </div>
+      <div class="form-group d-flex">
+        <h6 class="col-3">Ảnh minh họa: </h6>
+        <input type="file" class="form-control-file col-5" name="anh" (change)="onFileSelect($event)">
+      </div>
+      <div *ngIf="form.controls.anh.value">
+        <img [src]="imgData" >
+      </div>
+      <div class="my-3">
+        <h6 class="mx-3 d-inline">Các từ liên quan:</h6>
+        <p *ngIf="!tu_lienquan.controls.length" class="btn btn-info btn-sm" (click)="addTu_lienquan($event)">Add</p>
+        <p *ngIf="tu_lienquan.controls.length" class="d-inline">Nhấn tab để thêm từ liên quan.</p>
+      </div>
+        <div formArrayName="tu_lienquan" *ngIf="tu_lienquan.controls.length">
+          <div *ngFor="let tu_lq of tu_lienquan.controls; let i=index" class="mb-3">
+            <div [formGroupName]="i" class="d-flex">
+              <button class="btn btn-danger btn-sm mt-4 ml-3" (click)="removeTu_lienquan(i)">X</button>
+              <div class="col-6">
+                Từ tiếng Anh: 
+                <input type="text" class="form-control" list="datalistOpti" formControlName="tu_en" (keydown.tab)="addTu_lienquan($event)" required>
+                <datalist id="datalistOpti">
+                  <option *ngFor="let word of wordListFilter" value={{word.tu_en}}> {{word.tu_loai}}{{word.phien_am}} {{word.nghia_vi}}
+                </datalist>
+              </div>
+            </div>
+            <div *ngIf="addForm.submitted && tu_lienquan.controls[i].get('tu_en').errors?.required">
+              <label class="validation-message text-left ml-3"> This field is required.</label>
+            </div>
+          </div>
+        </div>
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary my-3 mx-3" >Save</button>
+      </div>
+  </form>
+
+  <div class="card" style="width: 17rem;" *ngIf="comment">
+    <div class="card-body">
+      <h5 class="card-title">Góp ý</h5>
+      <p class="card-text">{{comment}}</p>
+    </div>
+  </div>
