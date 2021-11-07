@@ -36,6 +36,8 @@ import { UserHomeComponent } from './component/user/user-home/user-home.componen
 import { ManageHomeComponent } from './component/manage/manage-home/manage-home.component';
 import { AdminHomeComponent } from './component/admin/admin-home/admin-home.component';
 
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +79,9 @@ import { AdminHomeComponent } from './component/admin/admin-home/admin-home.comp
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi:true
-  },ClientService,AuthGuard],
+  },{provide: LocationStrategy,
+     useClass: HashLocationStrategy
+    },ClientService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
