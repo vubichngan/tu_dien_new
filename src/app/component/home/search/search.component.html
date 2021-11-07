@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let word of wordListFilter| paginate: { itemsPerPage: 5, currentPage: p }; index as i">
-          <td><a routerLink='/home/detail' (click)="getWordId(word._id)">{{word.tu_en}}</a></td>
+          <td><a routerLink='/detail' (click)="getWordId(word._id)">{{word.tu_en}}</a></td>
           <td>{{word.phien_am}}</td>
           <td>{{word.tu_loai}}</td>
       </tr>
