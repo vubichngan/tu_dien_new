@@ -32,7 +32,7 @@ const routes: Routes = [
   //{path:'', redirectTo: '/home/search', pathMatch: 'full'},
   {path:'', component: HomeComponent, children:[
     {path:'detail', component: DetailWordComponent},
-    {path:'home', component: SearchComponent}],pathMatch: 'full'},
+    {path:'home', component: SearchComponent}],redirectTo: '/home',pathMatch: 'full'},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path:'admin', component: AdminComponent, canActivate: [AuthGuard], children:[
