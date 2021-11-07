@@ -29,10 +29,10 @@ import { AdminHomeComponent } from './component/admin/admin-home/admin-home.comp
 
 
 const routes: Routes = [
-  {path:'', redirectTo: '/home/search', pathMatch: 'full'},
-  {path:'home', component: HomeComponent, children:[
+  {path:'', redirectTo: '/home', pathMatch: 'full'},
+  {path:'/', component: HomeComponent, children:[
     {path:'detail', component: DetailWordComponent},
-    {path:'search', component: SearchComponent}]},
+    {path:'home', component: SearchComponent}]},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path:'admin', component: AdminComponent, canActivate: [AuthGuard], children:[
@@ -61,7 +61,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
