@@ -34,7 +34,7 @@
         <td>{{user.permission}}</td>
         <td>{{user.status}}</td>
         <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateWord" (click)="updateUser(user._id,'1')" [disabled]="user.status!=='Khóa'">Kích hoạt</button></td>
-        <td><button type="button" class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button></td>
+        <!-- <td><button type="button" class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button></td> -->
         <td><button type="button" class="btn btn-danger btn-sm" (click)="updateUser(user._id,'0')"  [disabled]="user.status==='Khóa'">Khóa</button></td>
       </tr>
     </tbody>

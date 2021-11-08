@@ -10,10 +10,12 @@ import { HomeComponent } from '../home.component';
 export class SearchComponent implements OnInit {
 
   wordList:Word[];
+  wordList1:any[];
   wordListFilter:any[];
   wordSearch:String;
   isHide:boolean;
-  search;
+  arrayString:Array<any>;
+  search:String;
   abc: Array<any>;
   p: number = 1;
   constructor(private clientService: ClientService,private homeComponent: HomeComponent) { }
@@ -29,8 +31,7 @@ export class SearchComponent implements OnInit {
 
   searchA_Z(a){
     this.clientService.getSearch(a).subscribe((response: any)=>{
-      this.wordList=response.filter(s => s.trang_thai==="Đã duyệt");
-      this.wordListFilter= this.wordList;
+      this.wordListFilter=response.filter(s => s.trang_thai==="Đã duyệt");
       });
   }
 
@@ -44,24 +45,41 @@ export class SearchComponent implements OnInit {
       this.wordSearch=this.homeComponent.search;
       this.clientService.getWord().subscribe((response: any)=>{
         this.wordList=response.filter(s => s.trang_thai==="Đã duyệt");
-        this.wordListFilter= this.wordList.filter(
-          s => s.tu_en.toLowerCase().indexOf(this.wordSearch.toLowerCase())!==-1||
-          s.nghia_en.toLowerCase().indexOf(this.wordSearch.toLowerCase())!==-1||
-          s.nghia_vi.toLowerCase().indexOf(this.wordSearch.toLowerCase())!==-1
-        );
+        this.searchW(this.wordSearch);
       });
     }
   }
 
+
+ searchW(text:any){
+  this.wordListFilter=[];
+  this.arrayString= text.split(/\s+/);
+  this.arrayString.forEach(element=>{
+    this.wordList1= this.wordList.filter(s=>
+      s.tu_en.toLowerCase().indexOf(element.toLowerCase())!==-1||
+      s.nghia_en.toLowerCase().indexOf(element.toLowerCase())!==-1||
+      s.nghia_vi.toLowerCase().indexOf(element.toLowerCase())!==-1
+      );
+     this.wordList1.forEach(el=>{
+      this.wordListFilter.push(el);
+     })
+  })
+  this.wordListFilter = this.wordListFilter.filter((item, index) => this.wordListFilter.indexOf(item) === index);
+ }
+
   onKey(event){
     this.search = event.target.value;
+    console.log(this.search);
     if(this.search===""){
       this.wordListFilter=this.wordList;
     }else{
-      this.wordListFilter= this.wordList.filter(s => s.tu_en.toLowerCase().indexOf(this.search.toLowerCase())!==-1||
-      s.nghia_en.toLowerCase().indexOf(this.search.toLowerCase())!==-1||
-      s.nghia_vi.toLowerCase().indexOf(this.search.toLowerCase())!==-1
+      this.wordListFilter= this.wordList.filter(s => 
+          s.tu_en.toLowerCase().indexOf(this.search.toLowerCase())!==-1||
+          s.nghia_en.toLowerCase().indexOf(this.search.toLowerCase())!==-1||
+          s.nghia_vi.toLowerCase().indexOf(this.search.toLowerCase())!==-1
       );
     }
+    console.log(this.wordListFilter);
+
   }
 }

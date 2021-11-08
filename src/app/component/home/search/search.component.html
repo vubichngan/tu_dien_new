@@ -1,7 +1,7 @@
 <div class="nav justify-content-center mt-2">
   <form #formSearch="ngForm"class="form-inline my-2 my-lg-0 nav justify-content-center col-6" >
     <input class="form-control mr-sm-2 col-7" type="search" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="wordSearch" (keyup)="onKey($event)">
-    <!-- <a class="btn btn-primary my-2 my-sm-0" (click)="searchWord(wordSearch)">Search</a> -->
+    <a class="btn btn-primary my-2 my-sm-0" (click)="searchW(wordSearch)">Search</a>
   </form>
 </div>
 <div class="my-3">
@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let word of wordListFilter| paginate: { itemsPerPage: 5, currentPage: p }; index as i">
-          <td><a routerLink='/detail' (click)="getWordId(word._id)">{{word.tu_en}}</a></td>
+          <td><a routerLink='/home/detail' (click)="getWordId(word._id)">{{word.tu_en}}</a></td>
           <td>{{word.phien_am}}</td>
           <td>{{word.tu_loai}}</td>
       </tr>
