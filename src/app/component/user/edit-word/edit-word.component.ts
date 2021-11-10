@@ -6,6 +6,7 @@ import { UserComponent } from '../user.component';
 import { FormGroup, FormControl,FormBuilder,Validators,FormArray} from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { ActivatedRoute, Params} from '@angular/router';
 
 
 @Component({
@@ -23,21 +24,16 @@ export class EditWordComponent implements OnInit {
   comment;
   wordList:Word[];
   wordListFilter:any[];
-  constructor(private router: Router,private fb: FormBuilder,private clientService: ClientService,private appComponent: AppComponent,private userComponent: UserComponent) { }
+  constructor(private router: Router,private route: ActivatedRoute,private fb: FormBuilder,private clientService: ClientService,private appComponent: AppComponent,private userComponent: UserComponent) { }
 
   ngOnInit(): void {
     this.userComponent.newForm(this);
     this.setWord();
-    this.id=this.userComponent.wordId;
   }
 
   get(){
-    this.clientService.getWord().subscribe((response: any)=>{
-      this.wordList=response;
-      this.wordList= this.wordList.filter(s => s.trang_thai!=="Từ chối");
-      this.wordList= this.wordList.filter(s => s._id!==this.id);
-      this.wordListFilter=this.wordList;
-    })
+      this.wordListFilter= this.wordList.filter(s => s.trang_thai!=="Từ chối");
+      this.wordListFilter= this.wordListFilter.filter(s => s._id!==this.id);
   }
 
   onFileSelect(event: Event){
@@ -59,31 +55,39 @@ export class EditWordComponent implements OnInit {
   }
 
   setWord(){
-    this.undefined=this.imgData;
-    var word= new Word();
-    this.clientService.getWord().subscribe((response: any)=>{
-      word= response.filter(s => s._id==this.id);
-      this.comment=word[0].ghi_chu;
-      this.img=word[0].anh;
-      this.imgData=word[0].anh;
-      this.form= this.fb.group({
-        tu_en:[word[0].tu_en,Validators.required],
-        tu_loai:[word[0].tu_loai,Validators.required],
-        phien_am:[word[0].phien_am],
-        nghia_en:[word[0].nghia_en],
-        nghia_vi:[word[0].nghia_vi,Validators.required],
-        tu_lienquan: this.fb.array([]),
-        anh: [word[0].anh],
-        trang_thai:[word[0].trang_thai],
-      }) 
-      for(var i=0; i<word[0].tu_lienquan.length;i++){
-        const t=this.fb.group({
-          tu_en:[word[0].tu_lienquan[i].tu_en,Validators.required],
-        })
-        this.tu_lienquan.push(t);
+    this.route.params.subscribe(
+      (params: Params) => {
+        if (params.id) {
+          this.undefined=this.imgData;
+          var word= new Word();
+          this.clientService.getWord().subscribe((response: any)=>{
+            this.wordList=response;
+            word= response.filter(s => s._id==params.id);
+            this.comment=word[0].ghi_chu;
+            this.img=word[0].anh;
+            this.imgData=word[0].anh;
+            this.form= this.fb.group({
+              tu_en:[word[0].tu_en,Validators.required],
+              tu_loai:[word[0].tu_loai,Validators.required],
+              phien_am:[word[0].phien_am],
+              nghia_en:[word[0].nghia_en],
+              nghia_vi:[word[0].nghia_vi,Validators.required],
+              tu_lienquan: this.fb.array([]),
+              anh: [word[0].anh],
+              trang_thai:[word[0].trang_thai],
+            }) 
+            for(var i=0; i<word[0].tu_lienquan.length;i++){
+              const t=this.fb.group({
+                tu_en:[word[0].tu_lienquan[i].tu_en,Validators.required],
+              })
+              this.tu_lienquan.push(t);
+            }
+            this.get();
+          })
+        } 
       }
-      this.get();
-    })
+    )
+    
   }
 
 async  updateWord(){
@@ -120,8 +124,8 @@ async  updateWord(){
       var v= await this.clientService.updateWord(this.id,words).toPromise();
       this.appComponent.alertWithSuccess(v);
       if(this.comment){
-        this.router.navigateByUrl('/user/list-word/unapproved');
-      } else this.router.navigateByUrl('/user/list-word/notApprovedYet');
+        this.router.navigateByUrl('/user'+this.userComponent.userName+'/list-word/unapproved');
+      } else this.router.navigateByUrl('/user'+this.userComponent.userName+'/list-word/notApprovedYet');
     }
     
   }

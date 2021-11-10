@@ -3,6 +3,7 @@ import { ClientService } from 'src/app/service/client.service';
 import { AppComponent } from 'src/app/app.component';
 import { UserComponent } from '../user.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 export class ListWordComponent implements OnInit {
 
   trang_thai;
-  constructor(private clientService: ClientService,private appComponent: AppComponent,private userComponent: UserComponent) { }
+  constructor(private clientService: ClientService,private router: Router,private appComponent: AppComponent,private userComponent: UserComponent) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +31,7 @@ export class ListWordComponent implements OnInit {
   }
 
   getWordId(id: String){
-    this.userComponent.wordId=id;
+    this.router.navigate([ '/user/'+this.userComponent.userName+'/edit-word',id ]);
   }
 
   checkUncheckAll(component) {

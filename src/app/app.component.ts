@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientService } from 'src/app/service/client.service';
 import { User } from 'src/app/model/user';
+import { Params} from '@angular/router';
 
 
 @Component({
@@ -15,6 +16,21 @@ export class AppComponent {
   clientService:ClientService;
   router: Router;
   User=new User();
+  userList:any[];
+  
+  getUser(component){
+    component.route.params.subscribe(
+      (params: Params) => {
+        if (params.name) {
+          component.clientService.getUser().subscribe((response: any)=>{
+            this.userList=response.filter(s =>s.user_name==params.name);
+            component.userName=this.userList[0].user_name;
+            component.idUser=this.userList[0]._id;
+          })
+        } 
+      })
+  }
+  
   alertWithSuccess(title){
     Swal.fire({
       icon: 'success',

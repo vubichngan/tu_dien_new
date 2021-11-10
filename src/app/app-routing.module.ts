@@ -31,26 +31,26 @@ import { AdminHomeComponent } from './component/admin/admin-home/admin-home.comp
 const routes: Routes = [
   {path:'', redirectTo: '/home/search', pathMatch: 'full'},
   {path:'home', component: HomeComponent, children:[
-    {path:'detail', component: DetailWordComponent},
+    {path:'detail/:id', component: DetailWordComponent},
     {path:'search', component: SearchComponent}]},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
-  {path:'admin', component: AdminComponent, canActivate: [AuthGuard], children:[
+  {path:'admin/:name', component: AdminComponent, canActivate: [AuthGuard], children:[
     {path:'list-user', component: ListUserComponent},
     {path:'aapproved', component: AApprovedComponent},
     {path:'anapproved', component: ANeetApprovedComponent},
     {path:'admin-home', component: AdminHomeComponent},
   ]},
-  {path:'manage', component: ManageComponent, canActivate: [AuthGuard], children:[
+  {path:'manage/:name', component: ManageComponent, canActivate: [AuthGuard], children:[
     {path:'mapproved', component: MApprovedComponent},
     {path:'napproved', component: NeetToBeApprovedComponent},
     {path:'user', component: UserResComponent},
     {path:'manage-home', component: ManageHomeComponent},
     {path:'re-approval', component: ReApprovalComponent},
   ]},
-  {path:'user', component: UserComponent, canActivate: [AuthGuard], children:[
+  {path:'user/:name', component: UserComponent, canActivate: [AuthGuard], children:[
     {path:'new-word', component: NewWordComponent},
-    {path:'edit-word', component: EditWordComponent},
+    {path:'edit-word/:id', component: EditWordComponent},
     {path:'user-home', component: UserHomeComponent},
     {path:'list-word', component: ListWordComponent, children:[
       {path:'notApprovedYet', component: NotApprovedYetComponent},

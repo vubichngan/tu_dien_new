@@ -23,7 +23,6 @@ export class ApprovedComponent implements OnInit {
       const wordListA= response.filter(s => s.nguoi_tao==this.userComponent.userName);
       this.wordList= wordListA.filter(s => s.trang_thai==="Đã duyệt");
       this.wordListFilter=this.wordList;
-      console.log(this.wordListFilter);
     })
   }
 

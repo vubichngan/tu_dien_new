@@ -3,7 +3,6 @@ import { ClientService } from 'src/app/service/client.service';
 import { Word } from 'src/app/model/word';
 import { UserComponent } from '../user.component';
 
-
 @Component({
   selector: 'app-user-home',
   templateUrl: './user-home.component.html',
@@ -17,10 +16,12 @@ export class UserHomeComponent implements OnInit {
   count_approved;
   count_unapproved;
   count_not_approved;
+  userName;
   constructor(private clientService: ClientService,private userComponent: UserComponent) { }
 
   ngOnInit(): void {
     this.clientService.getWord().subscribe((response: any)=>{
+      this.userName=this.userComponent.userName;
       this.wordList= response.filter(s => s.nguoi_tao==this.userComponent.userName);
       this.w= this.wordList.filter(s => s.trang_thai==="Đã duyệt");
       this.count_approved=this.w.length;

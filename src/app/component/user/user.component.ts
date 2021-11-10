@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ClientService } from 'src/app/service/client.service';
 import { Word } from 'src/app/model/word';
-import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { FormGroup,FormControl ,Validators} from '@angular/forms';
+import { ActivatedRoute, Params,Router} from '@angular/router';
 
 
 @Component({
@@ -15,23 +15,15 @@ export class UserComponent implements OnInit {
   
   
   // form: FormGroup;
-  wordId;
   userName;
   idUser;
   imgData:String;
   @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files  = []; 
-  constructor(private clientService: ClientService,private router: Router, private appComponent: AppComponent) {
+  constructor(private clientService: ClientService, private appComponent: AppComponent,private route: ActivatedRoute,private router: Router) {
   }
 
   ngOnInit(): void {
-    this.clientService.getUserProfile().subscribe(
-      res=>{
-        this.userName=res['user'].user_name;
-      },
-      err=>{
-        console.log(err);
-      });
-      this.idUser=this.clientService.getUserPayload()._id
+    this.appComponent.getUser(this);
   }
   newForm(form){
     form.form= form.fb.group({

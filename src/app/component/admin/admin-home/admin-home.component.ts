@@ -17,10 +17,12 @@ export class AdminHomeComponent implements OnInit {
   count_user;
   count_not_approved;
   userList:any[];
+  userName;
   constructor(private clientService: ClientService,private adminComponent: AdminComponent) { }
 
   ngOnInit(): void {
     this.clientService.getUser().subscribe((response: any)=>{
+      this.userName=this.adminComponent.userName;
       this.userList=response.filter(s =>s._id!==this.adminComponent.idUser);
       this.count_user=this.userList.length;
       this.userList.sort((a, b) => {

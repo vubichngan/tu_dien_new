@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
   Password:string;
   constructor(private clientService: ClientService, private router: Router) { }
 
+  name;
+  id;
+  userList:any[];
   ngOnInit(): void {
   }
 
@@ -23,15 +26,20 @@ export class LoginComponent implements OnInit {
     this.clientService.loginUser(form.value).subscribe(
       res=>{
         this.clientService.setToken(res['token']);
-        console.log(this.clientService.getUserPayload());
-        if(this.clientService.getUserPayload().status!=="0"){
-          if(this.clientService.getUserPayload().permission==="2"){
-            this.router.navigate(['/user/user-home']);
-          }else if(this.clientService.getUserPayload().permission==="1"){
-            this.router.navigate(['/manage/manage-home']);
-          }else
-            this.router.navigateByUrl('/admin/admin-home');
-        }else this.serverErrorMessage="Tài khoản của bạn đã bị khóa"
+        this.id=this.clientService.getUserPayload()._id;
+        this.clientService.getUser().subscribe((response: any)=>{
+          this.userList=response.filter(s =>s._id==this.clientService.getUserPayload()._id);
+          this.name=this.userList[0].user_name;
+          if(this.clientService.getUserPayload().status!=="0"){
+            if(this.clientService.getUserPayload().permission==="2"){
+              this.router.navigate(['/user/'+this.name+'/user-home']);
+            }else if(this.clientService.getUserPayload().permission==="1"){
+              this.router.navigate(['/manage/'+this.name+'/manage-home']);
+            }else
+              this.router.navigateByUrl('/admin/'+this.name+'/admin-home');
+          }else this.serverErrorMessage="Tài khoản của bạn đã bị khóa"
+        })
+        
       },
       err=>{
         this.serverErrorMessage=err.error.message;

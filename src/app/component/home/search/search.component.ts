@@ -50,7 +50,6 @@ export class SearchComponent implements OnInit {
     }
   }
 
-
  searchW(text:any){
   this.wordListFilter=[];
   this.arrayString= text.split(/\s+/);
@@ -69,7 +68,6 @@ export class SearchComponent implements OnInit {
 
   onKey(event){
     this.search = event.target.value;
-    console.log(this.search);
     if(this.search===""){
       this.wordListFilter=this.wordList;
     }else{
@@ -79,7 +77,5 @@ export class SearchComponent implements OnInit {
           s.nghia_vi.toLowerCase().indexOf(this.search.toLowerCase())!==-1
       );
     }
-    console.log(this.wordListFilter);
-
   }
 }

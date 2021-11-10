@@ -16,10 +16,12 @@ export class ManageHomeComponent implements OnInit {
   count_approved;
   count_re_approved;
   count_not_approved;
+  userName;
   constructor(private clientService: ClientService,private manageComponent:ManageComponent) { }
 
   ngOnInit(): void {
     this.clientService.getWordL().subscribe((response: any)=>{
+      this.userName=this.manageComponent.userName;
       this.wordList= response.filter(s => s.nguoi_duyet==this.manageComponent.userName);
       this.word= this.wordList.filter(s => s.trang_thai==="Đã duyệt");
       this.count_approved=this.word.length;
