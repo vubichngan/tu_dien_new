@@ -1,11 +1,11 @@
 <div class="nav justify-content-center mt-2">
-    <form #formSearch="ngForm"class="form-inline my-2 my-lg-0 nav justify-content-center col-6" >
+    <form #formSearch="ngForm"class="form-inline my-2 my-lg-0 nav justify-content-center w-100" >
         <input class="form-control mr-sm-2 col-7" type="search" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="wordSearch">
         <a class="btn btn-primary my-2 my-sm-0" routerLink='/home/search' (click)="searchWord(wordSearch)">Search</a>
     </form>
 </div>
-<div class="nav ml-5 pl-5 mt-5" *ngFor="let word of wordListFilter">
-    <ul class="list-group list-group-flush ml-5 pl-5 col-6">
+<div class="nav pl-5 mt-5 container-fluid" *ngFor="let word of wordListFilter">
+    <ul class="list-group list-group-flush">
         <li class="list-group-item" >
             <h4 class="text-primary">{{word.tu_en}} </h4> 
             <p class="mb-2 ml-3"><strong>- Từ loại:</strong> {{word.tu_loai}}</p>
@@ -35,7 +35,7 @@
             </div>
         </li>
     </ul>
-    <div class="col-4">
+    <div class="col-4 mb-1 ml-3">
             <h5>Ảnh minh họa</h5>
             <div *ngIf="word.anh">
                 <img src="{{word.anh}}" class="mx-3 ml-3">

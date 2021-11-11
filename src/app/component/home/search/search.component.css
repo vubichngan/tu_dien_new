@@ -19,3 +19,8 @@ a{
     text-decoration: none;
     cursor: pointer;
 }
+
+button.btn{
+    padding: 6px 9px;
+    margin:4px;
+}

@@ -25,7 +25,6 @@ body {
     color: #1d2129;
     font-size: 14px;
     background-size: cover;
-    min-width: 1200px;
     margin: 0;
     padding: 0 !important;
 }
@@ -49,15 +48,7 @@ body {
     justify-content: space-between;
 }
 
-/* .side-nav svg{
-    padding-right: 10px;
-    background: #343a40;
-    color: rgba(255, 255, 255, 0.74);
-    width: 30px;
-    height: 30px;
-    padding: 10px;
-    display: inline;
-} */
+
 .info {
     display: inline;
     float: right;
@@ -94,9 +85,6 @@ body {
 }
 
 
-/* seacrh */
-
-
 .user {
     background: #343a40;
     color: rgba(255, 255, 255, 0.74);
@@ -104,9 +92,6 @@ body {
     height: 160px;
     text-align: center;
 }
-/* .user svg{
-    display: inline;
-} */
 .user p{
     font-size: 20px;
 }
@@ -214,25 +199,41 @@ body {
         width: 75%;
         height: auto;
     } */
+    
     .navbar-expand-lg .navbar-collapse {
         display: flex!important;
-        flex-basis:auto;
     }
 
     .navbar-expand-lg .navbar-nav {
         flex-direction: row;
     }
-
+    
  }
 
 @media (min-width: 576px) { 
-    
+    .container {
+        max-width: 540px;
     }
+    .navbar-expand-lg .navbar-collapse {
+        display: flex!important;
+    }
+    .navbar-expand-lg .navbar-nav {
+        flex-direction: row;
+    }
+}
      /* Medium devices (tablets, 768px and up) */
-    @media (min-width: 768px) {  }
+    
     
     /* // Large devices (desktops, 992px and up) */
-    @media (min-width: 992px) { }
+    @media (min-width: 992px) { 
+        .navbar-expand-lg {
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+        }
+        
+    }
     
     /* // Extra large devices (large desktops, 1200px and up) */
     @media (min-width: 1200px) {  }

@@ -1,10 +1,10 @@
 <div class="nav justify-content-center mt-2">
-  <form #formSearch="ngForm"class="form-inline my-2 my-lg-0 nav justify-content-center col-6" >
+  <form #formSearch="ngForm"class="form-inline my-2 my-lg-0 nav justify-content-center w-100" >
     <input class="form-control mr-sm-2 col-7" type="search" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="wordSearch" (keyup)="onKey($event)">
     <a class="btn btn-primary my-2 my-sm-0" (click)="searchW(wordSearch)">Search</a>
   </form>
 </div>
-<div class="my-3">
+<div class="my-3 container-fluid">
   <button class="bg-info btn mx-1 " *ngFor="let a of abc" type="button" (click)="searchA_Z(a)">{{a}}</button>
 </div>
 <div class="justify-content-center nav mt-5">

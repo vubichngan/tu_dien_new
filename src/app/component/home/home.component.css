@@ -1,6 +1,40 @@
 img{
-    display: block;
+    display: inline;
     margin: 10px;
-    width: 15%;
+    width: 200px;
     height: auto;
+}   
+
+h1{
+    font-weight: bold;
+    margin: 48px 0;
+
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+     h1{
+        margin: 24px 0;
+     }
+}
+
+/* @media (min-width: 576px) { 
+    img {
+        width: 75%;
+    }
+} */
+
+@media (max-width: 575.98px) { 
+    img,h1{
+        position: relative;
+        padding-right: 7.5px;
+        padding-left: 7.5px;
+    }
+
+    
+    h1{
+        text-align: center;
+        font-weight: bold;
+        width: 100%;
+        margin: 24px 0;
+    }
 }

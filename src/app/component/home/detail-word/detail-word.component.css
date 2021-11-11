@@ -10,3 +10,28 @@ a{
     cursor: pointer;
     text-decoration: none;
 }
+
+@media (min-width: 768px) and  (max-width: 1200px){
+    .container-fluid{
+        padding-left: 48px;
+        margin-left: 48px;
+    }
+
+}
+
+@media (max-width: 575.98px) { 
+    .col-md-6{
+        position: relative;
+        width: 100%;
+        padding-right: 7.5px;
+        padding-left: 7.5px;
+    }
+}
+
+
+/* .col-md-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+} */
+
