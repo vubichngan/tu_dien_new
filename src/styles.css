@@ -209,16 +209,20 @@ body {
 
 /* Some media queries for responsiveness */
 
+@media (max-width: 575.98px) { 
+    .bodyg{
+        width: 50%;
+        height: auto;
+    }
+ }
+
 @media (min-width: 576px) { 
     .navbar-expand-lg {
         flex-flow: row nowrap;
         justify-content: flex-start;
      }
 
-     .bodyg{
-         width: 50%;
-         height: auto;
-     }
+     
     }
      /* Medium devices (tablets, 768px and up) */
     @media (min-width: 768px) {  }
