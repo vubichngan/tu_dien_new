@@ -214,6 +214,11 @@ body {
         flex-flow: row nowrap;
         justify-content: flex-start;
      }
+
+     .bodyg{
+         width: 50%;
+         height: auto;
+     }
     }
      /* Medium devices (tablets, 768px and up) */
     @media (min-width: 768px) {  }
