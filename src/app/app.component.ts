@@ -33,7 +33,7 @@ export class AppComponent {
             theme: "minimal"
         });
 
-        $('#dismiss, .overlay').on('click', function () {
+        $('#dismiss, .overlay, .click').on('click', function () {
             // hide sidebar
             $('#sidebar').addClass('active');
             // hide overlay
