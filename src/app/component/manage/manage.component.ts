@@ -17,6 +17,7 @@ export class ManageComponent implements OnInit {
   constructor(private clientService: ClientService, private appComponent: AppComponent, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.appComponent.jquery();
     this.appComponent.getUser(this);
   }
 
