@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ClientService } from 'src/app/service/client.service';
 import { User } from 'src/app/model/user';
 import { Params} from '@angular/router';
+declare var $: any;
 
 
 @Component({
@@ -18,6 +19,30 @@ export class AppComponent {
   User=new User();
   userList:any[];
   
+  jquery(){
+    $(document).ready(function () {
+      $('#sidebarCollapse').on('click', function () {
+            // open sidebar
+            $('#sidebar').removeClass('active');
+            // fade in the overlay
+            $('.overlay').addClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#dismiss, .overlay').on('click', function () {
+            // hide sidebar
+            $('#sidebar').addClass('active');
+            // hide overlay
+            $('.overlay').removeClass('active');
+        });
+    });
+  }
+
+
   getUser(component){
     component.route.params.subscribe(
       (params: Params) => {

@@ -22,7 +22,9 @@ export class UserComponent implements OnInit {
   constructor(private clientService: ClientService, private appComponent: AppComponent,private route: ActivatedRoute,private router: Router) {
   }
 
+
   ngOnInit(): void {
+    this.appComponent.jquery();
     this.appComponent.getUser(this);
   }
   newForm(form){
