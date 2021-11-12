@@ -1,9 +1,10 @@
 img{
     display: block;
-    margin: 10px;
-    width: 250px;
+    margin-left: 25%!important;
+    width: 60%;
     height: auto;
     border: 1px solid gray;
+    margin:5%;
 }
 
 a{
@@ -19,19 +20,31 @@ a{
 
 }
 
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .col-md-6{
+        padding:0;
+    }
+}
+
 @media (max-width: 575.98px) { 
     .col-md-6{
         position: relative;
         width: 100%;
-        padding-right: 7.5px;
-        padding-left: 7.5px;
+        padding:0!important;
+
     }
+
+    /* .col-md-5{
+        position: relative;
+        width: 100%;
+    } */
 }
 
-
-/* .col-md-6 {
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%;
+/* .col-md-4 {
+    flex: 0 0 40%;
+    max-width: 40%;
 } */
+
+
+
 

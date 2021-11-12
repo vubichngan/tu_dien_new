@@ -4,8 +4,8 @@
         <a class="btn btn-primary my-2 my-sm-0" routerLink='/home/search' (click)="searchWord(wordSearch)">Search</a>
     </form>
 </div>
-<div class="nav pl-5 mt-5 container-fluid" *ngFor="let word of wordListFilter">
-    <ul class="list-group list-group-flush">
+<div class="nav justify-content-center pl-5 mt-5" *ngFor="let word of wordListFilter">
+    <ul class="list-group list-group-flush col-md-6 shadow p-3 mb-5 bg-white rounded">
         <li class="list-group-item" >
             <h4 class="text-primary">{{word.tu_en}} </h4> 
             <p class="mb-2 ml-3"><strong>- Từ loại:</strong> {{word.tu_loai}}</p>
@@ -35,10 +35,12 @@
             </div>
         </li>
     </ul>
-    <div class="col-4 mb-1 ml-3">
+    <div class="col-md-6">
+        <div class="shadow p-3 mb-5 bg-white rounded">
             <h5>Ảnh minh họa</h5>
             <div *ngIf="word.anh">
                 <img src="{{word.anh}}" class="mx-3 ml-3">
             </div>
+        </div>
     </div>
 </div> 

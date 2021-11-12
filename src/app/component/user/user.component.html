@@ -1,4 +1,76 @@
-<nav >
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav id="sidebar" class="active">
+
+      <div id="dismiss">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+          <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+        </svg>
+      </div>
+
+      <div class="sidebar-header">
+          <h3>Bootstrap Sidebar</h3>
+      </div>
+
+      <ul class="list-unstyled components">
+          <p>Dummy Heading</p>
+          <li class="active">
+              <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+              <ul class="collapse list-unstyled" id="homeSubmenu">
+                  <li>
+                      <a href="#">Home 1</a>
+                  </li>
+                  <li>
+                      <a href="#">Home 2</a>
+                  </li>
+                  <li>
+                      <a href="#">Home 3</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <a href="#">About</a>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                  <li>
+                      <a href="#">Page 1</a>
+                  </li>
+                  <li>
+                      <a href="#">Page 2</a>
+                  </li>
+                  <li>
+                      <a href="#">Page 3</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <a href="#">Portfolio</a>
+          </li>
+          <li>
+              <a href="#">Contact</a>
+          </li>
+      </ul>
+  </nav>
+
+  <!-- Page Content -->
+  <div id="content">
+  <!-- Dark Overlay element -->
+    <div class="overlay"></div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+              <button type="button" id="sidebarCollapse" class="btn btn-info">
+                  <i class="fas fa-align-left"></i>
+                  <span>Toggle Sidebar</span>
+              </button>
+          </div>
+      </nav>
+      <div class="">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>
+
+<!-- <nav >
   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 navigation-bar">
     <p id="search"></p>
     <ul class="navbar-nav mx-3">
@@ -74,8 +146,8 @@
             <button (click)="onLogout()">Đăng xuất</button>
           </div>
       </div>
-  </div>
-  <div class="main">
+  </div> -->
+  <!-- <div class="main">
   <router-outlet></router-outlet>
-  </div>
-</nav>
+  </div> -->
+<!-- </nav> -->

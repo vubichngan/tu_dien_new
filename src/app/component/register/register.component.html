@@ -1,4 +1,5 @@
-<form #RegisterForm="ngForm" (submit)="RegisterForm.valid && onSubmit(RegisterForm)" class="py-2">
+<div class="d-flex justify-content-center">
+  <form #RegisterForm="ngForm" (submit)="RegisterForm.valid && onSubmit(RegisterForm)" class="py-2">
     <h1 class="text-center">Register</h1>
     <div class="form-group mx-3">
       <input type="text" #userName="ngModel" [(ngModel)]="UserName" class="form-control text-center" name="UserName" placeholder="User name"
@@ -27,4 +28,6 @@
     <div class="text-center mb-2">
       <a routerLink="/login">Nhấn vào đây để đăng nhập.</a>
     </div>
-</form>
+  </form>
+</div>
+
