@@ -14,6 +14,10 @@ export class RegisterComponent implements OnInit {
   serverErrorMessage:string;
   UserName:String;
   Password:string;
+  email;
+  noi_ct;
+  sdt;
+  emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
    constructor(private clientService: ClientService) { }
 
   ngOnInit(): void {
@@ -21,10 +25,13 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(form: NgForm){
     var user=new User();
+    user.email=form.value.email;
     user.user_name=form.value.UserName;
-    user.password=form.value.Password;
-    user.permission="2";
-    user.status="1";
+    user.noi_cong_tac=form.value.noi_ct;
+    user.sdt=form.value.sdt;
+    user.mat_khau=form.value.Password;
+    user.phan_quyen="2";
+    user.trang_thai="1";
     console.log(user);
     this.clientService.createUser(user).subscribe((response: any)=>{
       this.showSuccessMessage=true;

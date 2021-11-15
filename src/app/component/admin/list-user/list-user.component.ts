@@ -38,8 +38,8 @@ export class ListUserComponent implements OnInit {
       this.userListFilter=this.userList;
     }else{
       this.userListFilter= this.userList.filter(s =>s.user_name.toLowerCase().indexOf(this.search.toLowerCase())!==-1||
-      s.permission.toLowerCase().indexOf(this.search.toLowerCase())!==-1||
-      s.status.toLowerCase().indexOf(this.search.toLowerCase())!==-1 
+      s.phan_quyen.toLowerCase().indexOf(this.search.toLowerCase())!==-1||
+      s.trang_thai.toLowerCase().indexOf(this.search.toLowerCase())!==-1 
       );
     }
   }
@@ -73,9 +73,9 @@ export class ListUserComponent implements OnInit {
   createUser(form){
     var user=new User();
       user.user_name=form.value.login;
-      user.password= form.value.password;
-      user.permission="1";
-      user.status="1";
+      user.mat_khau= form.value.password;
+      user.phan_quyen="1";
+      user.trang_thai="1";
     this.clientService.createUser(user).subscribe((response: any)=>{
       this.reset();
       this.appComponent.alertWithSuccess("Successfully");
@@ -104,17 +104,17 @@ export class ListUserComponent implements OnInit {
         this.userList=response.filter(s =>s._id!==this.adminComponent.idUser);
         this.userList.forEach(function(element){
           element.isChecked=false;
-          if(element.permission==='0'){
-            element.permission="Quản trị hệ thống";
-          }else if(element.permission==='1')
-                  element.permission="Quản lý";
-          else element.permission="Người dùng";
+          if(element.phan_quyen==='0'){
+            element.phan_quyen="Quản trị hệ thống";
+          }else if(element.phan_quyen==='1')
+                  element.phan_quyen="Quản lý";
+          else element.phan_quyen="Người dùng";
   
-          if(element.status==='1'){
-            element.status="Kích hoạt";
-          }else if(element.status==='0'){
-            element.status="Khóa";
-          }else element.status="Bị báo cáo";
+          if(element.trang_thai==='1'){
+            element.trang_thai="Kích hoạt";
+          }else if(element.trang_thai==='0'){
+            element.trang_thai="Khóa";
+          }else element.trang_thai="Bị báo cáo";
         })
         this.userListFilter=this.userList;
         this.status="1";
@@ -130,7 +130,7 @@ export class ListUserComponent implements OnInit {
     updateUser(id: any,status: String){
       var user=new User();
       user._id=id;
-      user.status=status;
+      user.trang_thai=status;
       this.clientService.updateUser(id,user).subscribe((response: any)=>{
         this.reset();
       })

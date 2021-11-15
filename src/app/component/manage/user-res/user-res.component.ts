@@ -27,21 +27,16 @@ export class UserResComponent implements OnInit {
 
   reset(){
     this.clientService.getUser().subscribe((response: any)=>{
-      this.userList= response.filter(s => s.permission=='2');
-      this.userList= this.userList.filter(s => s.status=='1');
+      this.userList= response.filter(s => s.phan_quyen=='2');
+      this.userList= this.userList.filter(s => s.trang_thai=='1');
       this.userList.forEach(function(element){
         element.isChecked=false;
-        if(element.permission==='0'){
-          element.permission="Quản trị hệ thống";
-        }else if(element.permission==='1')
-                element.permission="Quản lý";
-        else element.permission="Người dùng thường";
-
-        if(element.status==='1'){
-          element.status="Kích hoạt";
-        }else if(element.status='0'){
-          element.status="Khóa";
-        }else element.status="Bị báo cáo"
+        if(element.phan_quyen==='2'){
+          element.phan_quyen="Người dùng thường";
+        }
+        if(element.trang_thai==='1'){
+          element.trang_thai="Kích hoạt";
+        }
       })
       this.userListFilter=this.userList;
       this.isSelected=false;
@@ -52,7 +47,7 @@ export class UserResComponent implements OnInit {
   updateUser(id: any,status: String){
     var user=new User();
     user._id=id;
-    user.status=status;
+    user.trang_thai=status;
     this.clientService.updateUser(id,user).subscribe((response: any)=>{
       this.reset();
     })

@@ -103,7 +103,7 @@ export class AppComponent {
     }).then((result) => {
       if ("dismiss" in result) return
       this.User.user_name= userName;
-      this.User.password= result.value.currentPassword;
+      this.User.mat_khau= result.value.currentPassword;
       component.clientService.loginUser(this.User).subscribe(
         res=>{
           this.changePassword(result,idUser,component);
@@ -119,7 +119,7 @@ export class AppComponent {
   changePassword(form,idUser,component){
           var user=new User();
           user._id=idUser;
-          user.password= form.value.newPassword;
+          user.mat_khau= form.value.newPassword;
           component.clientService.updateUser(idUser,user).subscribe((response: any)=>{
             this.alertWithSuccess("Successfully");
           },

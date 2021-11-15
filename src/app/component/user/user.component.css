@@ -1,8 +1,8 @@
 
-/* #menu{
+#menu{
     position: sticky;
     top:0;
-} */
+}
 
 
 #sidebar {
@@ -46,6 +46,7 @@ a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s;
+    cursor: pointer;
 }
 
 #sidebar {

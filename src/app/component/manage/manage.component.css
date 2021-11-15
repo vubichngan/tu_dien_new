@@ -15,10 +15,10 @@ table{
 } */
 
 
-/* #menu{
+.menu{
     position: sticky;
     top:0;
-} */
+}
 
 
 #sidebar {

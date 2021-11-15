@@ -18,6 +18,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.appComponent.jquery();
     this.appComponent.getUser(this);
   }
 
