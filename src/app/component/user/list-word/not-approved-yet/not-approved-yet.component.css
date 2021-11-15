@@ -1,5 +1,5 @@
 /* table{
-    width: 90%;
+    width: 5%;
     height: auto;
 } */
 
@@ -14,4 +14,13 @@ img{
     width: 100px;
     height: 60px;
     border: 1px solid gray;
+}
+
+@media (max-width: 575.98px) { 
+    .col-3, .col-7{
+        position: relative;
+        width: 100%;
+        padding:0!important;
+
+    }
 }

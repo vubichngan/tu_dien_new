@@ -58,6 +58,7 @@ export class EditWordComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         if (params.id) {
+          this.id=params.id;
           this.undefined=this.imgData;
           var word= new Word();
           this.clientService.getWord().subscribe((response: any)=>{
@@ -124,8 +125,8 @@ async  updateWord(){
       var v= await this.clientService.updateWord(this.id,words).toPromise();
       this.appComponent.alertWithSuccess(v);
       if(this.comment){
-        this.router.navigateByUrl('/user'+this.userComponent.userName+'/list-word/unapproved');
-      } else this.router.navigateByUrl('/user'+this.userComponent.userName+'/list-word/notApprovedYet');
+        this.router.navigateByUrl('/user/'+this.userComponent.userName+'/list-word/unapproved');
+      } else this.router.navigateByUrl('/user/'+this.userComponent.userName+'/list-word/notApprovedYet');
     }
     
   }
