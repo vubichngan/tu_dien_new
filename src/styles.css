@@ -50,6 +50,11 @@ body {
 }
 
 */
+
+.search{
+    width: 40% !important;
+    margin-left: 30%;
+}
 .info {
     display: inline;
     float: right;

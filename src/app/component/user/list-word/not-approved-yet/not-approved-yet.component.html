@@ -1,40 +1,11 @@
 <h1 class="text-center mb-5">Danh sách từ chưa duyệt</h1>
-<form (ngSubmit)="updateWordList()" class="container-fluid">
-  <div>
-    <div class="d-flex">
-      <div class="col-4">
-        <input type="checkbox" class="mx-2" name="checkbox_all" [(ngModel)]="isSelected" (change)="checkUncheckAll()">
-        <label for="checkbox_all"> Chọn tất cả</label>
-        <button type="submit" class="btn btn-primary mx-2" [disabled]="isDisableBtn">Xóa</button> 
-      </div>
-      <input class="form-control col-4" type="search" placeholder="Search từ tiếng Anh" aria-label="Search" (keyup)="onKey($event)">
-    </div>
-    <!-- <div>
-      <div class="d-flex mt-5 bg-light p-2">
-        <div class="font-weight-bold">#</div>
-        <div class="col-1 font-weight-bold">STT</div>
-        <div class="col-2 font-weight-bold">Từ tiếng Anh</div>
-        <div class="col-2 font-weight-bold">Nghĩa tiếng Anh</div>
-        <div class="col-2 font-weight-bold">Nghĩa tiếng Việt</div>
-        <div class="col-2 font-weight-bold">Ảnh minh họa</div>
-        <div class="col-2 font-weight-bold">Các từ liên quan</div>
-        <div class="font-weight-bold">Hành động</div>
-      </div>
-      <div class="d-flex mt-2 border-bottom" *ngFor="let word of wordListFilter | paginate: { itemsPerPage: 5, currentPage: p }  index as i">
-        <div class=""><input type="checkbox" name="itemCheckbox" [(ngModel)]="word.isChecked" (change)="isAllSelected()"></div>
-        <div class="col-1">{{i+1}}</div>
-        <div class="col-2">{{word.tu_en}} ({{word.tu_loai}}) {{word.phien_am}}</div>
-        <div class="col-2">{{word.nghia_en}}</div>
-        <div class="col-2">{{word.nghia_vi}}</div>
-        <div class="col-2"><div *ngIf="word.anh"><img src="{{word.anh}}"></div></div>
-        <div class="col-2"><p *ngFor="let tu_lq of word.ds_tlq">{{tu_lq.tu_en}} ({{tu_lq.tu_loai}}) {{tu_lq.phien_am}} {{tu_lq.nghia_vi}}</p></div>
-        <div class="text-center"><a class="btn btn-primary btn-sm" (click)="getWordId(word._id)">Edit</a>
-        <button type="button" class="btn btn-danger btn-sm my-2 " (click)="deleteWord(word._id)">Delete</button>
-      </div>
-      </div>
-    </div> -->
-    
-       <table class="table mt-5 container-sm">
+<input class="form-control my-2 search" type="search" placeholder="Search từ tiếng Anh" aria-label="Search" (keyup)="onKey($event)">
+<form (ngSubmit)="updateWordList()">
+    <input type="checkbox" class="mx-2 ml-5" name="checkbox_all" [(ngModel)]="isSelected" (change)="checkUncheckAll()">
+    <label for="checkbox_all"> Chọn tất cả</label>
+    <button type="submit" class="btn btn-primary mx-2" [disabled]="isDisableBtn">Xóa</button> 
+    <div>
+       <table class="table mt-3">
         <thead class="thead-light ">
           <tr>
             <th scope="col">#</th>
@@ -61,7 +32,7 @@
           </tr>
         </tbody>
       </table> 
-  </div>
+    </div>
     
 </form>
 <pagination-controls (pageChange)="p = $event" class="float-right mt-5"></pagination-controls>
