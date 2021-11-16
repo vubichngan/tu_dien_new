@@ -1,7 +1,7 @@
 <h1 class="mb-3 text-center">Sửa từ</h1>
   <form [formGroup]="form" #addForm="ngForm" (submit)="form.valid && updateWord()">
     <!-- <div formGroupName="tu"> -->
-      <div class="mx-3 my-3 w-75">
+      <div class="mx-3 my-3">
         <h6>Từ tiếng Anh: </h6>
         <input class="form-control pl-2" type="text" name="tu_en" formControlName="tu_en" required >
         <div *ngIf="addForm.submitted && form.controls.tu_en?.errors?.required">
@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="d-flex">
-        <div class="col-3 mx-2">
+        <div class="col-4 mx-2">
           <h6 for="tu_loai">Từ loại: </h6>
           <select name="tu_loai" class="form-control" formControlName="tu_loai" required>
             <option value="Verb">Verb</option>
@@ -21,7 +21,7 @@
             <option value="Preposition">Preposition</option>
           </select>
         </div>
-        <div class="col-4 mx-3">
+        <div class="col-7 mx-3">
           <h6 for="phien_am">Phiên âm:</h6>
           <input type="text" class="form-control" name="phien_am" formControlName="phien_am">
         </div>
@@ -39,15 +39,15 @@
             <label class="validation-message"> This field is required.</label>
           </div>
       </div>
-      <div class="form-group d-flex">
-        <h6 class="col-3">Ảnh minh họa: </h6>
-        <input type="file" class="form-control-file col-5" name="anh" (change)="onFileSelect($event)">
+      <div class="form-group mx-3">
+        <h6 >Ảnh minh họa: </h6>
+        <input type="file" class="form-control-file col-6" name="anh" (change)="onFileSelect($event)">
       </div>
       <div *ngIf="form.controls.anh.value">
         <img [src]="imgData" >
       </div>
-      <div class="my-3">
-        <h6 class="mx-3 d-inline">Các từ liên quan:</h6>
+      <div class="my-3 ml-3">
+        <h6 class="mr-3 d-inline">Các từ liên quan:</h6>
         <p *ngIf="!tu_lienquan.controls.length" class="btn btn-info btn-sm" (click)="addTu_lienquan($event)">Add</p>
         <p *ngIf="tu_lienquan.controls.length" class="d-inline">Nhấn tab để thêm từ liên quan.</p>
       </div>
