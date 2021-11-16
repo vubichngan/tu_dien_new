@@ -18,4 +18,9 @@ img{
     border: 1px solid gray;
 }
 
-
+@media only screen and (max-width: 540px) {
+    div {
+        width: 100%;
+        overflow-x: auto;
+    }
+}

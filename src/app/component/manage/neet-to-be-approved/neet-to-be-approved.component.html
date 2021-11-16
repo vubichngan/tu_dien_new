@@ -1,17 +1,14 @@
 <h1 class="text-center mb-5">Danh sách cần duyệt</h1>
-    <form (ngSubmit)="updateWordList()">
-      <div class="d-flex">
-        <div class="ml-5 pl-3 col-7">
-          <input type="checkbox" class="mx-2" name="checkbox_all" [(ngModel)]="isSelected" (change)="checkUncheckAll()">
-          <label for="checkbox_all">Chọn tất cả:</label>
-          <select class="mx-2" name="statusChecked" [(ngModel)]="status">
-              <option value="Đã duyệt">Duyệt</option>
-              <option value="Từ chối">Từ chối</option>
-          </select>
-          <button type="submit" class="btn btn-primary mx-2" [disabled]="isDisableBtn">Thực hiện</button>
-        </div>
-        <input id="search" class="form-control ml-5 col-3" type="search từ tiếng Anh" placeholder="Search" aria-label="Search" (keyup)="onKey($event)">
-      </div>
+<input class="form-control search my-3" type="search từ tiếng Anh" placeholder="Search" aria-label="Search" (keyup)="onKey($event)">
+  <form (ngSubmit)="updateWordList()">
+    <input type="checkbox" class="mx-2 ml-5" name="checkbox_all" [(ngModel)]="isSelected" (change)="checkUncheckAll()">
+    <label for="checkbox_all">Chọn tất cả:</label>
+    <select class="mx-2" name="statusChecked" [(ngModel)]="status">
+      <option value="Đã duyệt">Duyệt</option>
+      <option value="Từ chối">Từ chối</option>
+    </select>
+    <button type="submit" class="btn btn-primary mx-2" [disabled]="isDisableBtn">Thực hiện</button>
+    <div>
       <table class="table">
         <thead class="thead-light">
           <tr class="text-center">
@@ -30,7 +27,7 @@
           <tr *ngFor="let word of wordListFilter| paginate: { itemsPerPage: 5, currentPage: p }; index as i">
             <td><input type="checkbox" name="itemCheckbox" [(ngModel)]="word.isChecked" (change)="isAllSelected()"></td>
             <th scope="row">{{i+1}}</th>
-            <td>{{word.tu_en}} {{word.tu_loai}} {{word.phien_am}}</td>
+            <td>{{word.tu_en}} ({{word.tu_loai}}) {{word.phien_am}}</td>
             <td>{{word.nghia_en}}</td>
             <td>{{word.nghia_vi}}</td>
             <td ><div *ngIf="word.anh"><img src="{{word.anh}}"></div></td>
@@ -41,5 +38,6 @@
           </tr>
         </tbody>
       </table>
-    </form>
+    </div>  
+  </form>
 <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
