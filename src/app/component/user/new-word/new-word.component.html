@@ -47,8 +47,8 @@
         </div>
         <div class="my-3 ml-3">
           <h6 class="mr-3 d-inline">Các từ liên quan:</h6>
-          <p *ngIf="!tu_lienquan.controls.length" class="btn btn-info btn-sm" (click)="addTu_lienquan($event)">Add</p>
-          <p *ngIf="tu_lienquan.controls.length" class="d-inline">Nhấn tab để thêm từ liên quan.</p>
+          <p class="btn btn-info btn-sm" (click)="addTu_lienquan($event)">Add</p><br>
+          <p *ngIf="tu_lienquan.controls.length" class="d-inline">Có thể nhấn tab để thêm từ liên quan.</p>
         </div>
           <div formArrayName="tu_lienquan" *ngIf="tu_lienquan.controls.length">
             <div *ngFor="let tu_lq of tu_lienquan.controls; let i=index" class="mb-3">
