@@ -46,56 +46,6 @@ export class ListUserComponent implements OnInit {
   }
 
 
-  formCreateUser(){
-    Swal.fire({
-      title: 'Thêm quản lý',
-      html: `<input type="text" id="login" class="swal2-input" placeholder="Tên đăng nhập">
-      <input type="email" id="email" class="swal2-input" placeholder="example@gmail.com...">
-      <input type="text" id="noi_ct" class="swal2-input" placeholder="Nơi công tác">
-      <input type="text" id="sdt" class="swal2-input" placeholder="Số điện thoại">
-      <input type="password" id="password" class="swal2-input" placeholder="Password">
-      `,
-      showCancelButton: true,
-      confirmButtonText: 'Lưu',
-      focusConfirm: false,
-      preConfirm: () => {
-        const login = Swal.getPopup().querySelector('#login').value
-        const password = Swal.getPopup().querySelector('#password').value
-        const le=password.length
-        if (!login || !password) {
-          Swal.showValidationMessage(`Please enter username and password`)
-        }else if(le<4){
-          Swal.showValidationMessage(`Please enter password atleast 4 characters`)
-        }
-        return { login: login, password: password }
-      }
-    }).then((result) => {
-      if ("dismiss" in result) return;
-      //this.createUser(result);
-    })
-    
-  }
-  
-  createUser(form){
-    var user=new User();
-      user.user_name=form.value.login;
-      user.mat_khau= form.value.password;
-      user.phan_quyen="1";
-      user.trang_thai="1";
-    this.clientService.createUser(user).subscribe((response: any)=>{
-      this.reset();
-      this.appComponent.alertWithSuccess("Successfully");
-    },
-    err=>{
-      if(err.status===422){
-        this.appComponent.erroAlert(err.error.join('</br>'));
-      }else{
-        this.appComponent.erroAlert('Something went wrong. Please contact admin');
-      }
-    })
-  }
-  
-  
   deleteUser(id:any){
     this.clientService.deleteUser(id).subscribe((response: any)=>{
       this.reset();

@@ -29,6 +29,7 @@ import { AdminHomeComponent } from './component/admin/admin-home/admin-home.comp
 import { UserAccountComponent } from './component/user/user-account/user-account.component';
 import { ManageAccountComponent } from './component/manage/manage-account/manage-account.component';
 import { AdminAccountComponent } from './component/admin/admin-account/admin-account.component';
+import { AddUserComponent } from './component/admin/add-user/add-user.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
     {path:'anapproved', component: ANeetApprovedComponent},
     {path:'admin-home', component: AdminHomeComponent},
     {path:'account', component: AdminAccountComponent},
+    {path:'add-user', component: AddUserComponent},
   ]},
   {path:'manage/:name', component: ManageComponent, canActivate: [AuthGuard], children:[
     {path:'mapproved', component: MApprovedComponent},
