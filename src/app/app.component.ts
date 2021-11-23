@@ -84,7 +84,7 @@ export class AppComponent {
       html: `<input type="password" id="currentPassword" class="swal2-input" placeholder="Mật khẩu cũ">
       <input type="password" id="newPassword" class="swal2-input" placeholder="Mật khẩu mới">
       <input type="password" id="confirmNewPassword" class="swal2-input" placeholder="Nhập lại mật khẩu mới">`,
-      confirmButtonText: 'Save',
+      confirmButtonText: 'Lưu',
       focusConfirm: false,
       preConfirm: () => {
         const currentPassword = Swal.getPopup().querySelector('#currentPassword').value
@@ -132,5 +132,5 @@ export class AppComponent {
           })
   }
 
-
+  
 }

@@ -26,6 +26,9 @@ import { ReApprovalComponent } from './component/manage/re-approval/re-approval.
 import { UserHomeComponent } from './component/user/user-home/user-home.component';
 import { ManageHomeComponent } from './component/manage/manage-home/manage-home.component';
 import { AdminHomeComponent } from './component/admin/admin-home/admin-home.component';
+import { UserAccountComponent } from './component/user/user-account/user-account.component';
+import { ManageAccountComponent } from './component/manage/manage-account/manage-account.component';
+import { AdminAccountComponent } from './component/admin/admin-account/admin-account.component';
 
 
 const routes: Routes = [
@@ -40,17 +43,20 @@ const routes: Routes = [
     {path:'aapproved', component: AApprovedComponent},
     {path:'anapproved', component: ANeetApprovedComponent},
     {path:'admin-home', component: AdminHomeComponent},
+    {path:'account', component: AdminAccountComponent},
   ]},
   {path:'manage/:name', component: ManageComponent, canActivate: [AuthGuard], children:[
     {path:'mapproved', component: MApprovedComponent},
     {path:'napproved', component: NeetToBeApprovedComponent},
     {path:'user', component: UserResComponent},
     {path:'manage-home', component: ManageHomeComponent},
+    {path:'account', component: ManageAccountComponent},
     {path:'re-approval', component: ReApprovalComponent},
   ]},
   {path:'user/:name', component: UserComponent, canActivate: [AuthGuard], children:[
     {path:'new-word', component: NewWordComponent},
     {path:'edit-word/:id', component: EditWordComponent},
+    {path:'account', component: UserAccountComponent},
     {path:'user-home', component: UserHomeComponent},
     {path:'list-word', component: ListWordComponent, children:[
       {path:'notApprovedYet', component: NotApprovedYetComponent},

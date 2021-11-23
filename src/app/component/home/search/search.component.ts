@@ -40,6 +40,7 @@ export class SearchComponent implements OnInit {
       this.clientService.getWord().subscribe((response: any)=>{
         this.wordList=response.filter(s => s.trang_thai==="Đã duyệt");
         this.wordListFilter= this.wordList;
+        console.log(this.wordListFilter);
         });
     }else {
       this.wordSearch=this.homeComponent.search;

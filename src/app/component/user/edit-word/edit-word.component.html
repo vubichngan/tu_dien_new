@@ -5,7 +5,7 @@
         <h6>Từ tiếng Anh: </h6>
         <input class="form-control pl-2" type="text" name="tu_en" formControlName="tu_en" required >
         <div *ngIf="addForm.submitted && form.controls.tu_en?.errors?.required">
-          <label class="validation-message"> This field is required.</label>
+          <label class="validation-message">Trường này không được để trống</label>
         </div>
       </div>
       <div class="d-flex">
@@ -36,7 +36,7 @@
           <h6 >Nghĩa tiếng Việt:</h6>
           <textarea class="form-control" rows="4" name="nghia_vi" formControlName="nghia_vi" required></textarea>
           <div *ngIf="addForm.submitted && form.controls.nghia_vi?.errors?.required">
-            <label class="validation-message"> This field is required.</label>
+            <label class="validation-message">Trường này không được để trống</label>
           </div>
       </div>
       <div class="form-group mx-3">
@@ -48,7 +48,7 @@
       </div>
       <div class="my-3 ml-3">
         <h6 class="mr-3 d-inline">Các từ liên quan:</h6>
-        <p class="btn btn-info btn-sm" (click)="addTu_lienquan($event)">Add</p>
+        <p class="btn btn-info btn-sm" (click)="addTu_lienquan($event)">Add</p><br>
         <p *ngIf="tu_lienquan.controls.length" class="d-inline">Có thể nhấn tab để thêm từ liên quan.</p>
       </div>
         <div formArrayName="tu_lienquan" *ngIf="tu_lienquan.controls.length">
@@ -64,12 +64,12 @@
               </div>
             </div>
             <div *ngIf="addForm.submitted && tu_lienquan.controls[i].get('tu_en').errors?.required">
-              <label class="validation-message text-left ml-3"> This field is required.</label>
+              <label class="validation-message text-left ml-3">Trường này không được để trống</label>
             </div>
           </div>
         </div>
       <div class="text-center mt-4">
-        <button type="submit" class="btn btn-primary my-3 mx-3" >Save</button>
+        <button type="submit" class="btn btn-primary my-3 mx-3" >Lưu</button>
       </div>
   </form>
 

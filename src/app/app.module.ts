@@ -37,6 +37,9 @@ import { ManageHomeComponent } from './component/manage/manage-home/manage-home.
 import { AdminHomeComponent } from './component/admin/admin-home/admin-home.component';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { UserAccountComponent } from './component/user/user-account/user-account.component';
+import { ManageAccountComponent } from './component/manage/manage-account/manage-account.component';
+import { AdminAccountComponent } from './component/admin/admin-account/admin-account.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,10 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     ReApprovalComponent,
     UserHomeComponent,
     ManageHomeComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    UserAccountComponent,
+    ManageAccountComponent,
+    AdminAccountComponent
   ],
   imports: [
     BrowserModule,

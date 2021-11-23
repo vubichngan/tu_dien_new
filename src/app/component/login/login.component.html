@@ -1,22 +1,22 @@
 <div class="d-flex justify-content-center">
   <form #LoginForm="ngForm" (submit)="LoginForm.valid && onSubmit(LoginForm)" class="py-2">
-    <h1 class="text-center">Login</h1>
+    <h1 class="text-center">Đăng nhập</h1>
     <div class="form-group mx-3">
-      <input type="text" #userName="ngModel" [(ngModel)]="user_name" class="form-control text-center" name="user_name" placeholder="User name"
+      <input type="text" #userName="ngModel" [(ngModel)]="user_name" class="form-control text-center" name="user_name" placeholder="Tên đăng nhập"
       required [ngClass]="{'invalid-textbox': LoginForm.submitted && !userName.valid}">
       <div *ngIf="LoginForm.submitted && !userName.valid">
-        <label class="validation-message"> This field is required.</label>
+        <label class="validation-message"> Trường này không được để trống</label>
       </div>
     </div>
     <div class="form-group mx-3">
-      <input type="password" #password="ngModel" [(ngModel)]="Password" class="form-control text-center" name="password" placeholder="Password"
+      <input type="password" #password="ngModel" [(ngModel)]="Password" class="form-control text-center" name="password" placeholder="Mật khẩu"
       minlength="4" required [ngClass]="{'invalid-textbox': LoginForm.submitted && !password.valid}">
       <div *ngIf="LoginForm.submitted && password.errors">
-        <label *ngIf="password.errors.required" class="validation-message"> This field is required.</label>
-        <label *ngIf="password.errors.minlength" class="validation-message"> Enter atleast 4 characters.</label>
+        <label *ngIf="password.errors.required" class="validation-message"> Trường này không được để trống</label>
+        <label *ngIf="password.errors.minlength" class="validation-message"> Nhập ít nhất 4 ký tự</label>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary mx-3">Login</button>
+    <button type="submit" class="btn btn-primary mx-3">Đăng nhập</button>
     <!-- Error message -->
     <div class="alert bg-danger text-center text-white w-100%" role="alert" *ngIf='serverErrorMessage'>
       {{serverErrorMessage}}

@@ -1,0 +1,40 @@
+
+    <h1 class="text-center mb-3">Cập nhật thông tin tài khoản</h1>
+    <form #RegisterForm="ngForm" (submit)="RegisterForm.valid && updateAccount(RegisterForm)" class="py-2">
+      <div class="form-group mx-3">
+        <label for="email">Email</label>
+        <input type="text" #Email="ngModel" [(ngModel)]="email" name="email" placeholder="example@gmail.com..." class="form-control"
+        required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :RegisterForm.submitted && !Email.valid }">
+        <div *ngIf="RegisterForm.submitted && Email.errors">
+          <label *ngIf="Email.errors.required" class="validation-message err">Trường này không được để trống</label>
+          <label *ngIf="Email.errors.pattern" class="validation-message err">Địa chỉ email không hợp lệ</label>
+        </div>
+      </div>
+      <div class="form-group mx-3">
+        <label for="userName">Tên đăng nhập</label>
+        <input type="text" #userName="ngModel" [(ngModel)]="UserName" class="form-control" name="UserName"
+        required [ngClass]="{'invalid-textbox': RegisterForm.submitted && !userName.valid}">
+        <div *ngIf="RegisterForm.submitted && !userName.valid">
+          <label class="validation-message err">Trường này không được để trống</label>
+        </div>
+      </div>
+      <div class="form-group mx-3">
+        <label for="noi_ct">Nơi công tác</label>
+        <input type="text" #Noi_ct="ngModel" [(ngModel)]="noi_ct" name="noi_ct" class="form-control"
+        required [ngClass]="{'invalid-textbox' :RegisterForm.submitted && !Noi_ct.valid }">
+        <div *ngIf="RegisterForm.submitted && !Noi_ct.valid">
+          <label class="validation-message err">Trường này không được để trống</label>
+        </div>
+      </div>
+      <div class="form-group mx-3">
+        <label for="sdt">Số điện thoại</label>
+        <input type="text" #Sdt="ngModel" [(ngModel)]="sdt" name="sdt" class="form-control"
+        required [ngClass]="{'invalid-textbox' :RegisterForm.submitted && !Sdt.valid }">
+        <div *ngIf="RegisterForm.submitted && !Sdt.valid">
+          <label class="validation-message err">Trường này không được để trống</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-25">Lưu</button>
+    </form>
+  
+  

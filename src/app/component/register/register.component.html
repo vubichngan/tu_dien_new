@@ -6,8 +6,8 @@
       <input type="text" #Email="ngModel" [(ngModel)]="email" name="email" placeholder="example@gmail.com..." class="form-control"
       required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :RegisterForm.submitted && !Email.valid }">
       <div *ngIf="RegisterForm.submitted && Email.errors">
-        <label *ngIf="Email.errors.required" class="validation-message err">This field is required.</label>
-        <label *ngIf="Email.errors.pattern" class="validation-message err">Invalid email address.</label>
+        <label *ngIf="Email.errors.required" class="validation-message err">Trường này không được để trống</label>
+        <label *ngIf="Email.errors.pattern" class="validation-message err">Địa chỉ email không hợp lệ</label>
       </div>
     </div>
     <div class="form-group mx-3">
@@ -15,7 +15,7 @@
       <input type="text" #userName="ngModel" [(ngModel)]="UserName" class="form-control" name="UserName"
       required [ngClass]="{'invalid-textbox': RegisterForm.submitted && !userName.valid}">
       <div *ngIf="RegisterForm.submitted && !userName.valid">
-        <label class="validation-message err"> This field is required.</label>
+        <label class="validation-message err"> Trường này không được để trống</label>
       </div>
     </div>
     <div class="form-group mx-3">
@@ -23,7 +23,7 @@
       <input type="text" #Noi_ct="ngModel" [(ngModel)]="noi_ct" name="noi_ct" class="form-control"
       required [ngClass]="{'invalid-textbox' :RegisterForm.submitted && !Noi_ct.valid }">
       <div *ngIf="RegisterForm.submitted && !Noi_ct.valid">
-        <label class="validation-message err">This field is required.</label>
+        <label class="validation-message err">Trường này không được để trống</label>
       </div>
     </div>
     <div class="form-group mx-3">
@@ -31,7 +31,7 @@
       <input type="text" #Sdt="ngModel" [(ngModel)]="sdt" name="sdt" class="form-control"
       required [ngClass]="{'invalid-textbox' :RegisterForm.submitted && !Sdt.valid }">
       <div *ngIf="RegisterForm.submitted && !Sdt.valid">
-        <label class="validation-message err">This field is required.</label>
+        <label class="validation-message err">TTrường này không được để trống</label>
       </div>
     </div>
     <div class="form-group mx-3">
@@ -39,8 +39,8 @@
       <input type="password" #password="ngModel" [(ngModel)]="Password" class="form-control" name="Password" placeholder="*****"
       minlength="4" required [ngClass]="{'invalid-textbox': RegisterForm.submitted && !password.valid}">
       <div *ngIf="RegisterForm.submitted && password.errors">
-        <label *ngIf="password.errors.required" class="validation-message err"> This field is required.</label>
-        <label *ngIf="password.errors.minlength" class="validation-message err"> Enter atleast 4 characters.</label>
+        <label *ngIf="password.errors.required" class="validation-message err"> Trường này không được để trống</label>
+        <label *ngIf="password.errors.minlength" class="validation-message err"> Nhập ít nhất 4 ký tự</label>
       </div>
     </div>
     <button type="submit" class="btn btn-primary mx-3">Đăng ký</button>
