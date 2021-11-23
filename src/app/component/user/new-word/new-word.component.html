@@ -1,5 +1,5 @@
 <h1 class="mb-3 text-center">Thêm từ</h1>
-  <form [formGroup]="form" #addForm="ngForm" (submit)="form.valid && createWord()">
+  <form [formGroup]="form" #addForm="ngForm" (submit)="form.valid && createWord(addForm)">
         <!-- <div formGroupName="tu"> -->
           <div class="mx-3 my-3 ">
             <h6>Từ tiếng Anh: </h6>
@@ -68,8 +68,8 @@
             </div>
           </div>
       <div class="text-center mt-4">
-        <button type="reset" class="btn btn-primary my-3 mx-3" >Reset</button>
-        <button type="submit" class="btn btn-primary my-3 mx-3" >Lưu</button>
+        <button type="button" class="btn btn-primary my-3 mx-3" (click)="reset()" >Reset</button>
+        <button type="submit" class="btn btn-primary my-3 mx-3">Lưu</button>
       </div>
   </form>
 

@@ -4,9 +4,9 @@ import { Word } from 'src/app/model/word';
 import { AppComponent } from 'src/app/app.component';
 import { UserComponent } from '../user.component';
 import{HttpClient} from '@angular/common/http';
-import { FormGroup, FormControl, FormBuilder,Validators,FormArray} from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder,Validators,FormArray,FormGroupDirective} from '@angular/forms';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-
+declare var $: any;
 
 
 
@@ -63,7 +63,7 @@ export class NewWordComponent implements OnInit {
 
   
 
-  createWord(){
+ createWord(formDirective: FormGroupDirective){
     var word =new Word();
     var t: Array<any> = []; 
     var w:any[];
@@ -83,8 +83,6 @@ export class NewWordComponent implements OnInit {
     }else{
       word.trang_thai="Chưa duyệt";
           word.nguoi_tao=this.userComponent.userName;
-          console.log(word);
-          console.log(this.form.value);
           if(this.form.value.anh!=null){
             const profileData = new FormData();
             profileData.append("anh", this.form.value.anh, this.form.value.anh.name);
@@ -98,12 +96,15 @@ export class NewWordComponent implements OnInit {
               })
             })
           }else {
-              this.clientService.createWord(word).subscribe((response: any)=>{
-                this.appComponent.alertWithSuccess("Create successfully");
+                  this.clientService.createWord(word).subscribe((response: any)=>{
+                 this.appComponent.alertWithSuccess("Create successfully");
+                 
               })
             }
-          this.reset();
     }
+    formDirective.resetForm();
+    this.reset();
     
   }
+
 }
