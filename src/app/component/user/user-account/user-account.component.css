@@ -17,3 +17,10 @@ label.err{
     width: 100%;
     margin: 0;
 }
+
+@media only screen and (max-width: 540px) {
+    form {
+        width: 100%;
+        margin-left: 0;
+    }
+}

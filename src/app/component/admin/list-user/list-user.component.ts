@@ -19,6 +19,7 @@ export class ListUserComponent implements OnInit {
   userList:User[];
   p: number = 1;
   userListFilter:User[];
+  emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   // user_name:String;
   // password: String;
   checkedUserList:any;
@@ -48,9 +49,14 @@ export class ListUserComponent implements OnInit {
   formCreateUser(){
     Swal.fire({
       title: 'Thêm quản lý',
-      html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
-      <input type="password" id="password" class="swal2-input" placeholder="Password">`,
-      confirmButtonText: 'Save',
+      html: `<input type="text" id="login" class="swal2-input" placeholder="Tên đăng nhập">
+      <input type="email" id="email" class="swal2-input" placeholder="example@gmail.com...">
+      <input type="text" id="noi_ct" class="swal2-input" placeholder="Nơi công tác">
+      <input type="text" id="sdt" class="swal2-input" placeholder="Số điện thoại">
+      <input type="password" id="password" class="swal2-input" placeholder="Password">
+      `,
+      showCancelButton: true,
+      confirmButtonText: 'Lưu',
       focusConfirm: false,
       preConfirm: () => {
         const login = Swal.getPopup().querySelector('#login').value
@@ -65,7 +71,7 @@ export class ListUserComponent implements OnInit {
       }
     }).then((result) => {
       if ("dismiss" in result) return;
-      this.createUser(result);
+      //this.createUser(result);
     })
     
   }
