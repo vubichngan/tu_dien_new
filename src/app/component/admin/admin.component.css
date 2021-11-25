@@ -150,3 +150,13 @@ ul ul a {
     cursor: pointer;
 }
 
+@media (min-width: 410px){
+    .navbar{
+        justify-content: flex-start;
+    }
+}
+
+img{
+    width: 70px;
+    height: auto;
+}
