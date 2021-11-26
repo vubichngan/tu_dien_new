@@ -17,6 +17,9 @@
           <th scope="col">#</th>
           <th scope="col">STT</th>
           <th scope="col">Tên đăng nhập</th>
+          <th scope="col">Email</th>
+          <th scope="col">Số điện thoại</th>
+          <th scope="col">Nơi công tác</th>
           <th scope="col">Phân quyền</th>
           <th scope="col">Trạng thái</th>
           <th scope="col" colspan="2">Hành động</th>
@@ -28,6 +31,9 @@
           <th scope="row">{{i+1}}</th>
           <td>{{user.user_name}}</td>
           <td>{{user.phan_quyen}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.sdt}}</td>
+          <td>{{user.noi_cong_tac}}</td>
           <td>{{user.trang_thai}}</td>
           <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateWord" (click)="updateUser(user._id,'1')" [disabled]="user.trang_thai!=='Khóa'">Kích hoạt</button></td>
           <!-- <td><button type="button" class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button></td> -->

@@ -11,6 +11,9 @@
           <th scope="col">#</th>
           <th scope="col">STT</th>
           <th scope="col">Tên đăng nhập</th>
+          <th scope="col">Email</th>
+          <th scope="col">Số điện thoại</th>
+          <th scope="col">Nơi công tác</th>
           <th scope="col">Phân quyền</th>
           <th scope="col">Hành động</th>
         </tr>
@@ -20,6 +23,9 @@
           <td><input type="checkbox" name="itemCheckbox" (change)="isAllSelected()" [(ngModel)]="user.isChecked"></td>
           <th scope="row">{{i+1}}</th>
           <td>{{user.user_name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.sdt}}</td>
+          <td>{{user.noi_cong_tac}}</td>
           <td>{{user.phan_quyen}}</td>
           <td><button type="button" class="btn btn-danger btn-sm" (click)="updateUser(user._id,'2')">Báo cáo</button></td>
         </tr>
