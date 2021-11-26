@@ -41,7 +41,7 @@ export class NeetToBeApprovedComponent implements OnInit {
   
   commentWord(id: any){
     Swal.fire({
-      title: 'Góp ý',
+      title: 'Ghi chú',
       html: `<textarea id="comment" class="swal2-textarea" placeholder="Comment"></textarea>`,
       confirmButtonText: 'Save',
       focusConfirm: false,

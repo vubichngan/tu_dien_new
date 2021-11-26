@@ -1,4 +1,4 @@
-<h1 class="text-center mb-5">Danh sách tác giả</h1>
+<h1 class="text-center mb-5">Danh sách người dùng có tài khoản</h1>
 <input class="form-control search my-3" type="search" placeholder="Search ten dang nhap" aria-label="Search" (keyup)="onKey($event)">
 <form #form="ngForm" (ngSubmit)="updateUserList()">
   <input type="checkbox" class="mx-2 ml-5" name="checkbox_all" [(ngModel)]="isSelected" (change)="checkUncheckAll()">

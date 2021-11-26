@@ -41,8 +41,8 @@ export class ReApprovalComponent implements OnInit {
   
   commentWord(id: any){
     Swal.fire({
-      title: 'Góp ý',
-      html: `<textarea id="comment" class="swal2-textarea" placeholder="Comment"></textarea>`,
+      title: 'Ghi chú',
+      html: `<textarea id="comment" class="swal2-textarea"></textarea>`,
       confirmButtonText: 'Save',
       focusConfirm: false,
       preConfirm: () => {
