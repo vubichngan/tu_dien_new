@@ -29,9 +29,10 @@
       <div class="form-group mx-3">
         <label for="sdt">Số điện thoại</label>
         <input type="text" #Sdt="ngModel" [(ngModel)]="sdt" name="sdt" class="form-control"
-        required [ngClass]="{'invalid-textbox' :RegisterForm.submitted && !Sdt.valid }">
-        <div *ngIf="RegisterForm.submitted && !Sdt.valid">
-          <label class="validation-message err">TTrường này không được để trống</label>
+        required [pattern]="reg" [ngClass]="{'invalid-textbox' :RegisterForm.submitted && !Sdt.valid }">
+        <div *ngIf="RegisterForm.submitted && Sdt.errors">
+          <label *ngIf="Sdt.errors.required" class="validation-message err">Trường này không được để trống</label>
+          <label *ngIf="Sdt.errors.pattern" class="validation-message err">Số điện thoại không hợp lệ</label>
         </div>
       </div>
       <div class="form-group mx-3">

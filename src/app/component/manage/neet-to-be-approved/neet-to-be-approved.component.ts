@@ -3,6 +3,7 @@ import { ClientService } from 'src/app/service/client.service';
 import { Word } from 'src/app/model/word';
 import { ManageComponent } from '../manage.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-neet-to-be-approved',
@@ -21,7 +22,7 @@ export class NeetToBeApprovedComponent implements OnInit {
   isSelected:boolean;
   p: number = 1;
   isDisableBtn:boolean;
-  constructor(private clientService: ClientService,private manageComponent:ManageComponent) { }
+  constructor(private clientService: ClientService,private manageComponent:ManageComponent,private appComponent: AppComponent) { }
 
   ngOnInit(): void {
     this.reset();
@@ -42,13 +43,13 @@ export class NeetToBeApprovedComponent implements OnInit {
   commentWord(id: any){
     Swal.fire({
       title: 'Ghi chú',
-      html: `<textarea id="comment" class="swal2-textarea" placeholder="Comment"></textarea>`,
-      confirmButtonText: 'Save',
+      html: `<textarea id="comment" class="swal2-textarea"></textarea>`,
+      confirmButtonText: 'Xác nhận',
       focusConfirm: false,
       preConfirm: () => {
         const comment = Swal.getPopup().querySelector('#comment').value
         if (!comment) {
-          Swal.showValidationMessage(`Please enter comment`)
+          Swal.showValidationMessage(`Không được để trống`)
         }
         return { comment: comment}
       }
@@ -72,6 +73,7 @@ export class NeetToBeApprovedComponent implements OnInit {
       word.tu_lienquan=this.w[0].tu_lienquan;
       word.nguoi_duyet=this.manageComponent.userName;
       this.clientService.updateWord(id,word).subscribe((response: any)=>{
+        this.appComponent.alertWithSuccess(status+" thành công")
         this.reset();
       })
       

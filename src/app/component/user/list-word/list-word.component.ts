@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class ListWordComponent implements OnInit {
 
   trang_thai;
+  flag;
   constructor(private clientService: ClientService,private router: Router,private appComponent: AppComponent,private userComponent: UserComponent) { }
 
   ngOnInit(): void {
@@ -68,20 +69,20 @@ export class ListWordComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Xác nhận'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.deleteWord(id,component)
+        this.deleteWord(id,component);
       }
     })
   }
 
   deleteWord(id:any,component){
     this.clientService.deleteWord(id).subscribe((response: any)=>{
+      this.appComponent.alertWithSuccess("Xóa thành công");
       this.reset(component);
-      this.appComponent.alertWithSuccess(response);
     },err=>{
-      this.appComponent.erroAlert('Delete error: '+err);
+      this.appComponent.erroAlert('Lỗi: '+err);
     }
     )
   }
@@ -93,7 +94,7 @@ export class ListWordComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Xác nhận'
     }).then((result) => {
       if (result.isConfirmed) {
         for(var i=0;i<component.checkedUserList.length;i++){
@@ -102,11 +103,6 @@ export class ListWordComponent implements OnInit {
       }
     })
   }
-  // updateWordList(component){
-  //   for(var i=0;i<component.checkedUserList.length;i++){
-  //     this.deleteWord(component.checkedUserList[i]._id,component);
-  //   }
-  // }
 
   onKey(event, component){
     component.search = event.target.value;

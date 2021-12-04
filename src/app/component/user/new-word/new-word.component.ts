@@ -89,22 +89,24 @@ export class NewWordComponent implements OnInit {
             this.clientService.createImg(profileData).subscribe((response: any)=>{
               word._id=response._id;
               this.clientService.updateWord(response._id,word).subscribe((response: any)=>{
-                this.appComponent.alertWithSuccess("Create successfully");
+                this.appComponent.alertWithSuccess("Thêm thành công");
               },
               err=>{
-                this.appComponent.erroAlert('Update error: '+err);
+                this.appComponent.erroAlert('Lỗi: '+err);
               })
             })
           }else {
                   this.clientService.createWord(word).subscribe((response: any)=>{
-                 this.appComponent.alertWithSuccess("Create successfully");
-                 
+                    this.appComponent.alertWithSuccess("Thêm thành công");
               })
             }
     }
     formDirective.resetForm();
-    this.reset();
+    $(document).ready(function () {
+      $(".form-control-file").val('');
+    })
     
+    this.reset();
   }
 
 }

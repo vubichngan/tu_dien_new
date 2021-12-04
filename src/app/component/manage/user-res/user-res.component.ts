@@ -50,6 +50,7 @@ export class UserResComponent implements OnInit {
     user.trang_thai=status;
     this.clientService.updateUser(id,user).subscribe((response: any)=>{
       this.reset();
+      this.appComponent.alertWithSuccess("Báo cáo thành công");
     })
   }
 

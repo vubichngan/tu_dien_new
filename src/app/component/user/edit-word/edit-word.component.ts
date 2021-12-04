@@ -115,7 +115,6 @@ async  updateWord(){
           profileData.append("_id", this.id);
           profileData.append("anh", this.form.value.anh, this.form.value.anh.name);
         var p= await this.clientService.updateImg(this.id,profileData).toPromise();
-        this.appComponent.alertWithSuccess(t);
         }
       }else words.anh=null;
       words._id=this.id;
@@ -123,7 +122,7 @@ async  updateWord(){
         words.trang_thai="Duyệt lại";
       }
       var v= await this.clientService.updateWord(this.id,words).toPromise();
-      this.appComponent.alertWithSuccess(v);
+      this.appComponent.alertWithSuccess("Sửa thành công");
       if(this.comment){
         this.router.navigateByUrl('/user/'+this.userComponent.userName+'/list-word/unapproved');
       } else this.router.navigateByUrl('/user/'+this.userComponent.userName+'/list-word/notApprovedYet');

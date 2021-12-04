@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   email;
   noi_ct;
   sdt;
+  reg = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
    constructor(private clientService: ClientService) { }
 
@@ -42,7 +43,7 @@ export class RegisterComponent implements OnInit {
       if(err.status===422){
         this.serverErrorMessage=err.error.join('</br>');
       }else{
-        this.serverErrorMessage='Something went wrong. Please contact admin';
+        this.serverErrorMessage='Đã xảy ra lỗi. Vui lòng liên hệ với quản trị viên';
       }
     })
   }

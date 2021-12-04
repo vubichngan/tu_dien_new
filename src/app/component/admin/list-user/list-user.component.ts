@@ -49,9 +49,9 @@ export class ListUserComponent implements OnInit {
   deleteUser(id:any){
     this.clientService.deleteUser(id).subscribe((response: any)=>{
       this.reset();
-      this.appComponent.alertWithSuccess(response);
+      this.appComponent.alertWithSuccess("Xóa thành công");
     },err=>{
-      this.appComponent.erroAlert('Delete error: '+err);
+      this.appComponent.erroAlert('Lỗi: '+err);
     }
     )
   }

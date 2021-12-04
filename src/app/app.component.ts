@@ -92,11 +92,11 @@ export class AppComponent {
         const confirmNewPassword = Swal.getPopup().querySelector('#confirmNewPassword').value
         const le=newPassword.length
         if (!confirmNewPassword || !newPassword||!currentPassword) {
-          Swal.showValidationMessage(`Please enter all fiels`)
+          Swal.showValidationMessage(`Nhập tất cả các trường`)
         }else if(le<4){
-          Swal.showValidationMessage(`Please enter password atleast 4 characters`)
+          Swal.showValidationMessage(`Nhập mật khẩu có ít nhất 4 ký tự`)
         }else if(newPassword!==confirmNewPassword){
-          Swal.showValidationMessage(`Confirm new password different new password`)
+          Swal.showValidationMessage(`Nhập lại mật khẩu khác mật khẩu mới`)
         }
         return {newPassword: newPassword , currentPassword:currentPassword}
       }
@@ -121,13 +121,13 @@ export class AppComponent {
           user._id=idUser;
           user.mat_khau= form.value.newPassword;
           component.clientService.updateUser(idUser,user).subscribe((response: any)=>{
-            this.alertWithSuccess("Successfully");
+            this.alertWithSuccess("Đổi mật khẩu thành công");
           },
           err=>{
             if(err.status===422){
               this.erroAlert(err.error.join('</br>'));
             }else{
-              this.erroAlert('Something went wrong. Please contact admin');
+              this.erroAlert('Đã xảy ra lỗi. Vui lòng liên hệ với quản trị viên');
             }
           })
   }
