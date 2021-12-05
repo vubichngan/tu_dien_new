@@ -16,7 +16,7 @@ export class AppComponent {
   title = 'front-end';
   clientService:ClientService;
   router: Router;
-  User=new User();
+  User:Object;
   userList:any[];
   
   jquery(){
@@ -102,14 +102,17 @@ export class AppComponent {
       }
     }).then((result) => {
       if ("dismiss" in result) return
-      this.User.user_name= userName;
-      this.User.mat_khau= result.value.currentPassword;
+      this.User={
+        user_name:userName,
+        password:result.value.currentPassword
+      }
+      console.log(this.User)
       component.clientService.loginUser(this.User).subscribe(
         res=>{
           this.changePassword(result,idUser,component);
         },
         err=>{
-          this.erroAlert(err.error.message);
+            this.erroAlert(err.error.message);
         }
       )
     })

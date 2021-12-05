@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   constructor(private clientService: ClientService,private homeComponent: HomeComponent) { }
 
   ngOnInit(): void {
-    this.reset();
+    this.homeComponent.reset(this);
     this.abc=["A","B","C","D","E","F","G","H","I","G","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
   }
 
@@ -35,22 +35,7 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  reset(){
-    console.log(this.homeComponent.search);
-    if(this.homeComponent.search==""||this.homeComponent.search==" "||this.homeComponent.search==null){
-      this.clientService.getWord().subscribe((response: any)=>{
-        this.wordList=response.filter(s => s.trang_thai==="Đã duyệt");
-        this.wordListFilter= this.wordList;
-        console.log(this.wordListFilter);
-        });
-    }else {
-      this.wordSearch=this.homeComponent.search;
-      this.clientService.getWord().subscribe((response: any)=>{
-        this.wordList=response.filter(s => s.trang_thai==="Đã duyệt");
-        this.searchW(this.wordSearch);
-      });
-    }
-  }
+  
 
  searchW(text:any){
   this.wordListFilter=[];

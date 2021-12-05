@@ -24,6 +24,24 @@ export class HomeComponent implements OnInit {
   searchWord(text:any){
     this.search=text;
   }
-
+  reset(component){
+    console.log(this.search);
+    // if(this.homeComponent.search==""||this.homeComponent.search==" "||this.homeComponent.search==null){
+      this.clientService.getWord().subscribe((response: any)=>{
+        component.wordList=response.filter(s => s.trang_thai==="Đã duyệt");
+        component.wordListFilter= component.wordList;
+        console.log(component.wordListFilter);
+        });
+    // }else {
+      if(this.search){
+        component.wordSearch=this.search;
+        this.clientService.getWord().subscribe((response: any)=>{
+          component.wordList=response.filter(s => s.trang_thai==="Đã duyệt");
+          component.searchW(component.wordSearch);
+        });
+      }
+      
+    // }
+  }
   
 }
