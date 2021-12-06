@@ -33,8 +33,8 @@
             <td ><div *ngIf="word.anh"><img src="{{word.anh}}"></div></td>
             <td><p *ngFor="let tu_lq of word.ds_tlq">{{tu_lq.tu_en}} ({{tu_lq.tu_loai}}) {{tu_lq.phien_am}} {{tu_lq.nghia_vi}}</p></td>
             <td>{{word.nguoi_tao}}</td>
-            <td><button type="button" class="btn btn-primary btn-sm" (click)="updateWordStatus(word._id,'Đã duyệt')">Duyệt</button></td>
-            <td><button type="button" class="btn btn-danger btn-sm" (click)="commentWord(word._id)">Từ chối</button></td>
+            <td><button type="button" class="btn btn-primary btn-sm" (click)="testStastus(word._id,'Đã duyệt')">Duyệt</button></td>
+            <td><button type="button" class="btn btn-danger btn-sm" (click)="testStastus(word._id,'Từ chối')">Từ chối</button></td>
           </tr>
         </tbody>
       </table>

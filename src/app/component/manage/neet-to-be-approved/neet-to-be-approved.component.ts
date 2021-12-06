@@ -41,27 +41,51 @@ export class NeetToBeApprovedComponent implements OnInit {
   }
   
   commentWord(id: any){
-    Swal.fire({
-      title: 'Ghi chú',
-      html: `<textarea id="comment" class="swal2-textarea"></textarea>`,
-      confirmButtonText: 'Xác nhận',
-      focusConfirm: false,
-      preConfirm: () => {
-        const comment = Swal.getPopup().querySelector('#comment').value
-        if (!comment) {
-          Swal.showValidationMessage(`Không được để trống`)
-        }
-        return { comment: comment}
-      }
-    }).then((result) => {
-      if ("dismiss" in result) return;
-      this.comment=result.value.comment;
-      console.log(id);
-      this.updateWordStatus(id,"Từ chối");
-    })
-    
+    var word=new Word();
+      word._id=id;
+          word.trang_thai="Đang duyệt";
+          this.clientService.updateWord(id,word).subscribe((response: any)=>{
+            Swal.fire({
+              title: 'Ghi chú',
+              html: `<textarea id="comment" class="swal2-textarea"></textarea>`,
+              showCancelButton: true,
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Xác nhận',
+              focusConfirm: false,
+              preConfirm: () => {
+                const comment = Swal.getPopup().querySelector('#comment').value
+                if (!comment) {
+                  Swal.showValidationMessage(`Không được để trống`)
+                }
+                return { comment: comment}
+              }
+            }).then(async(result) => {
+              if ("dismiss" in result){
+                var word=new Word();
+                  word._id=id;
+                  word.trang_thai="Chưa duyệt";
+                  let v=await this.clientService.updateWord(id,word).toPromise();
+                    return;
+              } 
+              this.comment=result.value.comment;
+              this.updateWordStatus(id,"Từ chối");
+            })
+          });
   }
 
+  testStastus(id,status){
+    this.clientService.getWord().subscribe((response: any)=>{
+      this.w=response.filter(s=>s._id===id);
+      if(this.w[0].trang_thai!=="Chưa duyệt"){
+        alert("Từ "+this.w[0].tu_en+" đang được sửa!");
+        this.reset();
+      }else{
+        if(status==="Đã duyệt"){
+          this.updateWordStatus(id,status);
+         }else this.commentWord(id);
+      }
+    })
+  }
     updateWordStatus(id: any,status: String){
       var word=new Word();
       word._id=id;
@@ -81,9 +105,7 @@ export class NeetToBeApprovedComponent implements OnInit {
   
     updateWordList(){
       for(var i=0;i<this.checkedUserList.length;i++){
-         if(this.status==="Đã duyệt"){
-          this.updateWordStatus(this.checkedUserList[i]._id,this.status);
-         }else this.commentWord(this.checkedUserList[i]._id);
+        this.testStastus(this.checkedUserList[i]._id,this.status);
       }
     }
   

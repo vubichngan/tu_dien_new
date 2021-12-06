@@ -16,6 +16,8 @@ export class UserComponent implements OnInit {
   
   // form: FormGroup;
   userName;
+  idWordEdit;
+  trangthai;
   idUser;
   imgData:String;
   @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files  = []; 
@@ -72,6 +74,15 @@ export class UserComponent implements OnInit {
   }
 
 
-
+ backEdit(){
+  if(this.idWordEdit&&this.trangthai){
+    var words =new Word();
+    words._id=this.idWordEdit;
+    words.trang_thai=this.trangthai;
+    this.clientService.updateWord(this.idWordEdit,words).toPromise();
+    this.trangthai=null;
+    this.idWordEdit=null;
+  }
+ }
 
 }

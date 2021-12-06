@@ -19,6 +19,7 @@ export class ApprovedComponent implements OnInit {
   constructor(private clientService: ClientService,private userComponent: UserComponent,private listWordComponent: ListWordComponent) { }
 
   ngOnInit(): void {
+    this.userComponent.backEdit();
     this.clientService.getWordL().subscribe((response: any)=>{
       const wordListA= response.filter(s => s.nguoi_tao==this.userComponent.userName);
       this.wordList= wordListA.filter(s => s.trang_thai==="Đã duyệt");

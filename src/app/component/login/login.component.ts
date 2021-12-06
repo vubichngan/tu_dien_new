@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
-    console.log(form.value);
     this.clientService.loginUser(form.value).subscribe(
       res=>{
         this.clientService.setToken(res['token']);

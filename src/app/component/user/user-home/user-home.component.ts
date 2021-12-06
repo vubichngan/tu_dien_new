@@ -20,6 +20,7 @@ export class UserHomeComponent implements OnInit {
   constructor(private clientService: ClientService,private userComponent: UserComponent) { }
 
   ngOnInit(): void {
+    this.userComponent.backEdit();
     this.clientService.getWord().subscribe((response: any)=>{
       this.userName=this.userComponent.userName;
       this.wordList= response.filter(s => s.nguoi_tao==this.userComponent.userName);

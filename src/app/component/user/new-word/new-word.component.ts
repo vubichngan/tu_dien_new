@@ -26,6 +26,7 @@ export class NewWordComponent implements OnInit {
     private http:HttpClient,private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.userComponent.backEdit();
     this.reset();
   }
   

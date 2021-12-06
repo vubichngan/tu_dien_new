@@ -21,15 +21,16 @@ export class NotApprovedYetComponent implements OnInit {
   p: number = 1;
   constructor(private listWordComponent: ListWordComponent,private clientService: ClientService,private userComponent: UserComponent) { }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
+    this.userComponent.backEdit();
     this.listWordComponent.trang_thai=s => s.trang_thai==='Chưa duyệt'||s.trang_thai==='Duyệt lại';
     this.listWordComponent.reset(this);
   }
 
   
 
-  getWordId(id: String){
-    this.listWordComponent.getWordId(id);
+  getWordId(id: String,trang_thai:string){
+    this.listWordComponent.getWordId(id,trang_thai,this);
   }
 
   checkUncheckAll() {

@@ -19,6 +19,7 @@ export class UserAccountComponent implements OnInit {
   constructor(private clientService: ClientService,private appComponent: AppComponent,private userComponent: UserComponent) { }
 
   ngOnInit(): void {
+    this.userComponent.backEdit();
      this.setAccount();
   }
 

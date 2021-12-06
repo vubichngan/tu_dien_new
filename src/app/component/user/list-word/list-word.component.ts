@@ -4,6 +4,7 @@ import { AppComponent } from 'src/app/app.component';
 import { UserComponent } from '../user.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Router } from '@angular/router';
+import { Word } from 'src/app/model/word';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 export class ListWordComponent implements OnInit {
 
   trang_thai;
-  flag;
+  wordList;
   constructor(private clientService: ClientService,private router: Router,private appComponent: AppComponent,private userComponent: UserComponent) { }
 
   ngOnInit(): void {
@@ -31,8 +32,22 @@ export class ListWordComponent implements OnInit {
     })
   }
 
-  getWordId(id: String){
-    this.router.navigate([ '/user/'+this.userComponent.userName+'/edit-word',id ]);
+  getWordId(id: String,trang_thai:string,component){
+    var words =new Word();
+    this.clientService.getWord().subscribe((response: any)=>{
+      this.wordList=response.filter(s=>s._id===id);
+      if(this.wordList[0].trang_thai!==trang_thai){
+        alert("Từ này đang được duyệt!");
+        this.reset(component);
+      }else{
+        words._id=id;
+        words.trang_thai="Đang sửa";
+        this.clientService.updateWord(id,words).subscribe(res=>{
+          this.router.navigate([ '/user/'+this.userComponent.userName+'/edit-word',id ]);
+        });
+      }
+    })
+    
   }
 
   checkUncheckAll(component) {

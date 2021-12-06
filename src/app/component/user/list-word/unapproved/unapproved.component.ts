@@ -21,13 +21,14 @@ export class UnapprovedComponent implements OnInit {
   constructor(private listWordComponent: ListWordComponent,private clientService: ClientService,private userComponent: UserComponent) { }
 
   ngOnInit(): void {
+    this.userComponent.backEdit();
     this.listWordComponent.trang_thai=s => s.trang_thai==="Từ chối";
     this.listWordComponent.reset(this);
   }
 
 
-  getWordId(id: String){
-    this.listWordComponent.getWordId(id);
+  getWordId(id: String,trang_thai){
+    this.listWordComponent.getWordId(id,trang_thai,this);
   }
 
   checkUncheckAll() {
