@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   
   search;
+  wordList;
+  wordListFilter;
   constructor(private clientService: ClientService,private router: Router) { }
 
   ngOnInit(): void {
@@ -25,14 +27,6 @@ export class HomeComponent implements OnInit {
     this.search=text;
   }
   reset(component){
-    console.log(this.search);
-    // if(this.homeComponent.search==""||this.homeComponent.search==" "||this.homeComponent.search==null){
-      this.clientService.getWord().subscribe((response: any)=>{
-        component.wordList=response.filter(s => s.trang_thai==="Đã duyệt");
-        component.wordListFilter= component.wordList;
-        console.log(component.wordListFilter);
-        });
-    // }else {
       if(this.search){
         component.wordSearch=this.search;
         this.clientService.getWord().subscribe((response: any)=>{
