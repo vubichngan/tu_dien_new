@@ -27,7 +27,7 @@
             <td>{{word.nghia_vi}}</td> 
             <td ><div *ngIf="word.anh"><img src="{{word.anh}}"></div></td>
             <td><p *ngFor="let tu_lq of word.ds_tlq">{{tu_lq.tu_en}} ({{tu_lq.tu_loai}}) {{tu_lq.phien_am}} {{tu_lq.nghia_vi}}</p></td>
-            <td><a type="button" class="btn btn-primary" (click)="getWordId(word._id,word.trang_thai)">Sửa</a></td>
+            <td><a type="button" class="btn btn-primary" (click)="getWordId(word)">Sửa</a></td>
             <td><button type="button" class="btn btn-danger" (click)="deleteWord(word._id)">Xóa</button></td>
           </tr>
         </tbody>

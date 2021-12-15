@@ -32,18 +32,23 @@ export class ListWordComponent implements OnInit {
     })
   }
 
-  getWordId(id: String,trang_thai:string,component){
+  getWordId(word,component){
     var words =new Word();
     this.clientService.getWord().subscribe((response: any)=>{
-      this.wordList=response.filter(s=>s._id===id);
-      if(this.wordList[0].trang_thai!==trang_thai){
+      this.wordList=response.filter(s=>s._id===word._id);
+      if(this.wordList[0].trang_thai!==word.trang_thai){
         alert("Từ này đang được duyệt!");
         this.reset(component);
       }else{
-        words._id=id;
+        this.userComponent.idWordEdit=word._id;
+        this.userComponent.trangthai=word.trang_thai;
+        this.userComponent.tulq=word.tu_lienquan;
+        words._id=word._id;
+        words.tu_lienquan=word.tu_lienquan;
         words.trang_thai="Đang sửa";
-        this.clientService.updateWord(id,words).subscribe(res=>{
-          this.router.navigate([ '/user/'+this.userComponent.userName+'/edit-word',id ]);
+        console.log(words);
+        this.clientService.updateWord(word._id,words).subscribe(res=>{
+          this.router.navigate([ '/user/'+this.userComponent.userName+'/edit-word',word._id ]);
         });
       }
     })

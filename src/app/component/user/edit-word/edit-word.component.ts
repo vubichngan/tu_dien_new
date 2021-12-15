@@ -27,9 +27,6 @@ export class EditWordComponent implements OnInit {
   constructor(private router: Router,private route: ActivatedRoute,private fb: FormBuilder,private clientService: ClientService,private appComponent: AppComponent,private userComponent: UserComponent) { }
 
   ngOnInit(): void {
-    this.route.url.subscribe(res=>{
-      this.userComponent.idWordEdit=res[1].path;
-    });
     this.userComponent.newForm(this);
     this.setWord();
   }
@@ -67,9 +64,6 @@ export class EditWordComponent implements OnInit {
           this.clientService.getWord().subscribe((response: any)=>{
             this.wordList=response;
             word= response.filter(s => s._id==params.id);
-            if(word[0].ghi_chu){
-              this.userComponent.trangthai='Duyệt lại';
-            }else this.userComponent.trangthai='Chưa duyệt';
             this.comment=word[0].ghi_chu;
             this.img=word[0].anh;
             this.imgData=word[0].anh;
@@ -127,6 +121,8 @@ async  updateWord(){
       if(words.trang_thai=="Từ chối"){
         words.trang_thai="Duyệt lại";
       }
+      this.userComponent.trangthai=null;
+      words.trang_thai="Chưa duyệt";
       this.clientService.updateWord(this.id,words).subscribe(response=>{
         this.appComponent.alertWithSuccess("Sửa thành công");
         if(this.comment){

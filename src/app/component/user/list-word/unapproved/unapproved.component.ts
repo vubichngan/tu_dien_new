@@ -27,8 +27,8 @@ export class UnapprovedComponent implements OnInit {
   }
 
 
-  getWordId(id: String,trang_thai){
-    this.listWordComponent.getWordId(id,trang_thai,this);
+  getWordId(word){
+    this.listWordComponent.getWordId(word,this);
   }
 
   checkUncheckAll() {

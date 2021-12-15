@@ -29,8 +29,8 @@ export class NotApprovedYetComponent implements OnInit {
 
   
 
-  getWordId(id: String,trang_thai:string){
-    this.listWordComponent.getWordId(id,trang_thai,this);
+  getWordId(word){
+    this.listWordComponent.getWordId(word,this);
   }
 
   checkUncheckAll() {
