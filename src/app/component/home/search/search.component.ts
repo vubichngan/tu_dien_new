@@ -18,9 +18,11 @@ export class SearchComponent implements OnInit {
   search:String;
   abc: Array<any>;
   p: number = 1;
+  tenDS;
   constructor(private clientService: ClientService,private homeComponent: HomeComponent) { }
 
   ngOnInit(): void {
+    this.tenDS='Danh sách thuật ngữ';
     this.clientService.getWord().subscribe((response: any)=>{
       this.wordList=response.filter(s => s.trang_thai==="Đã duyệt");
       this.wordListFilter= this.wordList;
@@ -35,6 +37,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchA_Z(a){
+    this.tenDS='Danh sách thuật ngữ liên quan đến '+'"'+a+'"';
     this.clientService.getSearch(a).subscribe((response: any)=>{
       this.wordListFilter=response.filter(s => s.trang_thai==="Đã duyệt");
       });
@@ -43,6 +46,7 @@ export class SearchComponent implements OnInit {
   
 
  searchW(text:any){
+  this.tenDS='Danh sách thuật ngữ liên quan đến '+'"'+text+'"';
   this.wordListFilter=[];
   this.arrayString= text.split(/\s+/);
   this.arrayString.forEach(element=>{
@@ -61,8 +65,10 @@ export class SearchComponent implements OnInit {
   onKey(event){
     this.search = event.target.value;
     if(this.search===""){
+       this.tenDS='Danh sách thuật ngữ';
       this.wordListFilter=this.wordList;
     }else{
+      this.tenDS='Danh sách thuật ngữ liên quan đến '+'"'+this.search+'"';
       this.wordListFilter= this.wordList.filter(s => 
           s.tu_en.toLowerCase().indexOf(this.search.toLowerCase())!==-1||
           s.nghia_en.toLowerCase().indexOf(this.search.toLowerCase())!==-1||
