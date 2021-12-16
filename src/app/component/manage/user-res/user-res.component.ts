@@ -32,7 +32,7 @@ export class UserResComponent implements OnInit {
       this.userList.forEach(function(element){
         element.isChecked=false;
         if(element.phan_quyen==='2'){
-          element.phan_quyen="Người dùng thường";
+          element.phan_quyen="Người dùng";
         }
         if(element.trang_thai==='1'){
           element.trang_thai="Kích hoạt";
