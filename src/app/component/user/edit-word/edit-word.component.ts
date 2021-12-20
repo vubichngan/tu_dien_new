@@ -120,9 +120,8 @@ async  updateWord(){
       words._id=this.id;
       if(words.trang_thai=="Từ chối"){
         words.trang_thai="Duyệt lại";
-      }
+      }else words.trang_thai="Chưa duyệt";
       this.userComponent.trangthai=null;
-      words.trang_thai="Chưa duyệt";
       this.clientService.updateWord(this.id,words).subscribe(response=>{
         this.appComponent.alertWithSuccess("Sửa thành công");
         if(this.comment){
