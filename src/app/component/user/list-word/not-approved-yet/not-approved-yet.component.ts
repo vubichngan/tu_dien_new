@@ -19,6 +19,7 @@ export class NotApprovedYetComponent implements OnInit {
   isDisableBtn:boolean;
   isSelected:boolean;
   p: number = 1;
+  btnSua:boolean;
   constructor(private listWordComponent: ListWordComponent,private clientService: ClientService,private userComponent: UserComponent) { }
 
    ngOnInit(): void {

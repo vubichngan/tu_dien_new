@@ -13,6 +13,8 @@ import { AppComponent } from 'src/app/app.component';
 export class NeetToBeApprovedComponent implements OnInit {
   
   search='';
+  listDa_duyet:any[];
+  tuDa_duyet:any;
   wordList:Word[];
   wordListFilter:any[];
   w:any[];
@@ -101,15 +103,38 @@ export class NeetToBeApprovedComponent implements OnInit {
       word.tu_lienquan=this.w[0].tu_lienquan;
       word.nguoi_duyet=this.manageComponent.userName;
       this.clientService.updateWord(id,word).subscribe((response: any)=>{
-        this.appComponent.alertWithSuccess(status+" thành công")
+        if(status==="Đã duyệt"){
+          this.updateTu_lienquan(word.tu_lienquan,this.w[0].tu_en);
+        }
+        this.appComponent.alertWithSuccess(status+" thành công");
         this.reset();
       })
       
     }
   
+    updateTu_lienquan(listTu_lq,tu_en){
+      this.clientService.getWord().subscribe((response:any)=>{
+        this.listDa_duyet=response.filter(s=>s.trang_thai==="Đã duyệt");
+        listTu_lq.forEach(element => {
+          var tu=new Word();
+          this.tuDa_duyet=this.listDa_duyet.filter(s=>s.tu_en===element.tu_en);
+          tu=this.tuDa_duyet[0];
+          tu.tu_lienquan.push({tu_en:tu_en});
+          console.log(tu);
+          this.clientService.updateWord(tu._id,tu).subscribe(res=>{
+            console.log(res);
+          },
+          err=>{
+            alert("Error! ");
+          });
+        });
+      })
+      
+    }
+
     updateWordList(){
       for(var i=0;i<this.checkedUserList.length;i++){
-        this.testStastus(this.checkedUserList[i]._id,this.status);
+        this.testStastus(this.checkedUserList[i],this.status);
       }
     }
   

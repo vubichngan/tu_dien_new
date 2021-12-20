@@ -29,10 +29,12 @@ export class ListWordComponent implements OnInit {
       component.wordListFilter=component.wordList;
       component.isDisableBtn=true;
       component.isSelected=false;
+      component.btnSua=true;
     })
   }
 
   getWordId(word,component){
+    component.btnSua=false;
     var words =new Word();
     this.clientService.getWord().subscribe((response: any)=>{
       this.wordList=response.filter(s=>s._id===word._id);
