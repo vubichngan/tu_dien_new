@@ -44,6 +44,8 @@ export class ReApprovalComponent implements OnInit {
     var word=new Word();
       word._id=id;
           word.trang_thai="Đang duyệt";
+          this.w=this.wordListFilter.filter(s => s._id==id);
+                  word.tu_lienquan=this.w[0].tu_lienquan;
           this.clientService.updateWord(id,word).subscribe((response: any)=>{
             Swal.fire({
               title: 'Ghi chú',
@@ -64,6 +66,8 @@ export class ReApprovalComponent implements OnInit {
                 var word=new Word();
                   word._id=id;
                   word.trang_thai="Duyệt lại";
+                  this.w=this.wordListFilter.filter(s => s._id==id);
+                  word.tu_lienquan=this.w[0].tu_lienquan;
                   let v=await this.clientService.updateWord(id,word).toPromise();
                     return;
               } 

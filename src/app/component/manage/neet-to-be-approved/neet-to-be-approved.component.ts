@@ -44,6 +44,8 @@ export class NeetToBeApprovedComponent implements OnInit {
     var word=new Word();
       word._id=id;
           word.trang_thai="Đang duyệt";
+          this.w=this.wordListFilter.filter(s => s._id==id);
+          word.tu_lienquan=this.w[0].tu_lienquan;
           this.clientService.updateWord(id,word).subscribe((response: any)=>{
             Swal.fire({
               title: 'Ghi chú',
@@ -63,7 +65,9 @@ export class NeetToBeApprovedComponent implements OnInit {
               if ("dismiss" in result){
                 var word=new Word();
                   word._id=id;
-                  word.trang_thai="Chưa duyệt";
+                  word.trang_thai="Chưa duyệt"; 
+                  this.w=this.wordListFilter.filter(s => s._id==id);
+                  word.tu_lienquan=this.w[0].tu_lienquan;
                   let v=await this.clientService.updateWord(id,word).toPromise();
                     return;
               } 
@@ -73,16 +77,16 @@ export class NeetToBeApprovedComponent implements OnInit {
           });
   }
 
-  testStastus(id,status){
+  testStastus(word ,status){
     this.clientService.getWord().subscribe((response: any)=>{
-      this.w=response.filter(s=>s._id===id);
+      this.w=response.filter(s=>s._id===word._id);
       if(this.w[0].trang_thai!=="Chưa duyệt"){
         alert("Từ "+this.w[0].tu_en+" đang được sửa!");
         this.reset();
       }else{
         if(status==="Đã duyệt"){
-          this.updateWordStatus(id,status);
-         }else this.commentWord(id);
+          this.updateWordStatus(word._id,status);
+         }else this.commentWord(word._id);
       }
     })
   }
