@@ -33,7 +33,7 @@ export class NewWordComponent implements OnInit {
   get(){
     this.clientService.getWord().subscribe((response: any)=>{
       this.wordList=response;
-      this.wordList= this.wordList.filter(s => s.trang_thai!=="Từ chối");
+      this.wordList= this.wordList.filter(s => s.trang_thai==="Đã duyệt");
       this.wordListFilter=this.wordList;
     })
   }
@@ -79,7 +79,7 @@ export class NewWordComponent implements OnInit {
         Swal.fire({
           title:'Thêm không thành công',
           icon: 'error',
-          text:'Từ '+t+' chưa được tạo hãy thêm '+ t +' vào danh sách của bạn.'
+          text:'Từ '+t+' không có trong danh sách từ đã duyệt. Hãy thêm '+ t +' vào danh sách của bạn.'
         })
     }else{
       word.trang_thai="Chưa duyệt";

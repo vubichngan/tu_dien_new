@@ -32,7 +32,7 @@ export class EditWordComponent implements OnInit {
   }
 
   get(){
-      this.wordListFilter= this.wordList.filter(s => s.trang_thai!=="Từ chối");
+      this.wordListFilter= this.wordList.filter(s => s.trang_thai==="Đã duyệt");
       this.wordListFilter= this.wordListFilter.filter(s => s._id!==this.id);
   }
 
@@ -106,7 +106,7 @@ async  updateWord(){
         Swal.fire({
           title:'Thêm không thành công',
           icon: 'error',
-          text:'Từ '+t+' chưa được tạo hãy thêm từ '+ t +' vào danh sách của bạn.'
+          text:'Từ '+t+' không có trong danh sách từ đã duyệt. Hãy thêm từ '+ t +' vào danh sách của bạn.'
         })
     }else{
       var profileData = new FormData();
