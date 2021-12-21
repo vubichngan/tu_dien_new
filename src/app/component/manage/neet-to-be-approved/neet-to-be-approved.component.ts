@@ -46,7 +46,6 @@ export class NeetToBeApprovedComponent implements OnInit {
     var word=new Word();
       word._id=id;
           word.trang_thai="Đang duyệt";
-          this.w=this.wordListFilter.filter(s => s._id==id);
           word.tu_lienquan=this.w[0].tu_lienquan;
           this.clientService.updateWord(id,word).subscribe((response: any)=>{
             Swal.fire({
@@ -68,7 +67,6 @@ export class NeetToBeApprovedComponent implements OnInit {
                 var word=new Word();
                   word._id=id;
                   word.trang_thai="Chưa duyệt"; 
-                  this.w=this.wordListFilter.filter(s => s._id==id);
                   word.tu_lienquan=this.w[0].tu_lienquan;
                   let v=await this.clientService.updateWord(id,word).toPromise();
                     return;
@@ -96,10 +94,12 @@ export class NeetToBeApprovedComponent implements OnInit {
       var word=new Word();
       word._id=id;
       word.trang_thai=status;
+      if(status==="Đã duyệt"){
+        word.ghi_chu="";
+      }
       if(this.comment!==""){
         word.ghi_chu=this.comment;
       }
-      this.w=this.wordListFilter.filter(s => s._id==id);
       word.tu_lienquan=this.w[0].tu_lienquan;
       word.nguoi_duyet=this.manageComponent.userName;
       this.clientService.updateWord(id,word).subscribe((response: any)=>{
