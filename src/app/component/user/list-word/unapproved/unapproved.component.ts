@@ -3,6 +3,7 @@ import { ListWordComponent } from '../list-word.component';
 import { Word } from 'src/app/model/word';
 import { ClientService } from 'src/app/service/client.service';
 import { UserComponent } from '../../user.component';
+import { Observable, interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-unapproved',
@@ -18,12 +19,19 @@ export class UnapprovedComponent implements OnInit {
   isDisableBtn:boolean;
   isSelected:boolean;
   p: number = 1;
+  private updateSubscription: Subscription;
   constructor(private listWordComponent: ListWordComponent,private clientService: ClientService,private userComponent: UserComponent) { }
 
   ngOnInit(): void {
     this.userComponent.backEdit();
     this.listWordComponent.trang_thai=s => s.trang_thai==="Từ chối";
     this.listWordComponent.reset(this);
+    this.updateSubscription = interval(30000).subscribe(
+      (val) => {
+        this.listWordComponent.trang_thai=s => s.trang_thai==="Từ chối";
+        this.listWordComponent.reset(this);
+      }
+    );
   }
 
 

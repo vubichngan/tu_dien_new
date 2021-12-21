@@ -4,6 +4,7 @@ import { Word } from 'src/app/model/word';
 import { ManageComponent } from '../manage.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { AppComponent } from 'src/app/app.component';
+import { Observable, interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-re-approval',
@@ -24,10 +25,16 @@ export class ReApprovalComponent implements OnInit {
   isSelected:boolean;
   p: number = 1;
   isDisableBtn:boolean;
+  private updateSubscription: Subscription;
   constructor(private clientService: ClientService,private manageComponent:ManageComponent,private appComponent: AppComponent) { }
 
   ngOnInit(): void {
     this.reset();
+    this.updateSubscription = interval(30000).subscribe(
+      (val) => { 
+        this.reset();
+      }
+    );
   }
 
   reset(){
